@@ -1,7 +1,7 @@
 Airbrake.configure do |config|
   config.host = 'https://errbit-notification.herokuapp.com'
   config.project_id = 3
-  config.project_key = 'd826daf267cd6c405461306e51daeb7a'
+  config.project_key = ENV['ERRBIT_PROJECT_KEY']
 
   config.root_directory = Rails.root
   config.logger = Rails.logger
