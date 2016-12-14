@@ -1,0 +1,31 @@
+
+<!-- MAIN CONTENT -->
+<div class="medium-9 columns">
+
+  <div class="row questions-filter">
+    <ul class="inline-list float-right">
+      <li>
+        <a (click)="onFilterNavigate('newest')">newest</a>
+      </li>
+      <li>
+        <a (click)="onFilterNavigate('hot')">hot</a>
+      </li>
+      <li>
+        <a (click)="onFilterNavigate('week')">week</a>
+      </li>
+      <li>
+        <a (click)="onFilterNavigate('month')">month</a>
+      </li>
+      <li>
+        <a (click)="onFilterNavigate('unanswered')">unanswered</a>
+      </li>
+    </ul>
+  </div>
+
+  <app-question-list [filter]="questionsFilter"></app-question-list>
+</div>
+
+<!-- SIDEBAR -->
+<div class="medium-3 columns">
+  <app-top-categories></app-top-categories>
+</div>

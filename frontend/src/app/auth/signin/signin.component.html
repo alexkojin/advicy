@@ -1,0 +1,30 @@
+<div class="small-8 large-4 small-centered large-centered column box">
+  <h4>Sign In</h4>
+
+  <div class='callout alert' *ngIf="error">
+    <p>{{error}}</p>
+  </div>
+
+  <form (submit)="onLogin($event, email.value, password.value)">
+    <label>
+      Email
+      <input type="email" name="email" required #email />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" required #password />
+    </label>
+
+    <input type="submit" class="button" value="Sign In">
+
+    <a class="button" (click)="authService.navigateToOAuthFacebook()">Facebook Sign In</a>
+
+    <a class="button" (click)="authService.navigateToOAuthGoogle()">Google Sign In</a>
+
+    <a class="button" routerLink="/signup">Sign Up</a>
+
+    <a routerLink="/password/forgot">Forgot Your Password?</a>
+  </form>
+</div>
+

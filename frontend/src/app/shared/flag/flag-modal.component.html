@@ -1,0 +1,45 @@
+<div class="small reveal" id="flag-modal" data-reveal data-animation-in="hinge-in-from-middle-x">
+  <div class="small-12 columns">
+    <form (submit)="onSubmit()">
+      <ul class="no-bullet flag-list">
+        <li>
+          <label>
+            <input type="radio" name="flag_type" value="spam" [(ngModel)]="flag.flag_type" />
+            Spam
+            <div class="help-text">Undisclosed promotion for a link or product</div>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="flag_type" value="rude" [(ngModel)]="flag.flag_type" />
+            Rude or abusive
+            <div class="help-text">A reasonable person would find this content inappropriate for respectful discourse.</div>
+          </label>
+        </li>
+
+        <li>
+          <label>
+            <input type="radio" name="flag_type" value="low_quality" [(ngModel)]="flag.flag_type" />
+            Low quality
+            <div class="help-text">This question has severe formatting or content problems. This question is unlikely to be salvageable through editing, and might need to be removed.</div>
+          </label>
+        </li>
+
+        <li>
+          <label>
+            <input type="radio" name="flag_type" value="duplicate" [(ngModel)]="flag.flag_type" />
+            Duplicate
+            <div class="help-text">This question has been asked before and already has an answer.</div>
+          </label>
+
+          <textarea [(ngModel)]="flag.reason" *ngIf="flag.flag_type == 'duplicate'" name="reason"  placeholder="Provide list of url(s) for original posts"></textarea>
+        </li>
+
+      </ul>
+      <button type="submit" class="button float-right" [disabled]="!flag.flag_type">Submit a Flag</button>
+    </form>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

@@ -1,0 +1,45 @@
+<div class="small-8 large-4 small-centered large-centered column box">
+  <h4>Sign Up</h4>
+
+  <div class='callout alert' *ngIf="error">
+    <p>{{error}}</p>
+  </div>
+
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <label>
+      Username
+      <input type="text" name="username" required
+        [(ngModel)]="user.username"
+        #username="ngModel" />
+    </label>
+    <div [class.is-visible]="!(username.valid || username.pristine)" class="form-error">
+      Username can't be blank
+    </div>
+
+    <label>
+      Email
+      <input type="email" name="email"
+        [(ngModel)]="user.email"
+        #email="ngModel"
+        required
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
+    </label>
+    <div [class.is-visible]="!(email.valid || email.pristine)" class="form-error">Invalid email</div>
+
+    <label>
+      Password
+      <input type="password" name="password"
+        required
+        minlength="6"
+        [(ngModel)]="user.password"
+        #password="ngModel" />
+    </label>
+    <div [class.is-visible]="!(password.valid || password.pristine)" class="form-error">
+      Password must be greater than 6 letters.
+    </div>
+
+    <button type="submit" class="button" >Create my account</button>
+    <a routerLink="/signin" class="button">I already have an account</a>
+  </form>
+</div>
+

@@ -1,0 +1,13 @@
+<div *ngIf="questions.length == 0 && noItemsMessage">
+  <h5>{{noItemsMessage}}</h5>
+</div>
+
+<ul class="question-list">
+  <app-question-item *ngFor="let question of questions | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" [question]="question"></app-question-item>
+</ul>
+
+<pagination-controls (pageChange)="getPage($event)"
+                      directionLinks="true"
+                      autoHide="true"
+                      class="text-center">
+</pagination-controls>

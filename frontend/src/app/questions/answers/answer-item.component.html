@@ -1,0 +1,39 @@
+<div class="row answer-item">
+  <a id="a{{answer.id}}" name="a{{answer.id}}"></a>
+  <div class="small-1 column">
+    <app-vote-control [votableType]="'answer'" [votable]='answer'></app-vote-control>
+  </div>
+
+  <div class="small-11 column box">
+    <div class="answer-body" [innerHTML]="answer.body_html">
+    </div>
+
+    <div class="row">
+      <div class="small-8 column">
+        <div *ngIf="answer.is_owner">
+          <a [routerLink]="['/questions', answer.question_id, answer.question_slug, 'answers', answer.id, 'edit']">edit</a>
+          <a (click)="onDeleteClick()">delete</a>
+        </div>
+      </div>
+      <div class="small-4 column">
+        <div class="row" *ngIf="answer.user">
+          <div class="small-3 column ">
+            <div class="thumbnail"><img src="{{answer.user.image_url}}" class="user-image"></div>
+          </div>
+          <div class="small-9 column">
+            <a [routerLink]="['/users', answer.user.id, answer.user.slug]">{{answer.user.username}}</a>
+            <div>{{answer.created_at}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <app-comments [comments]="answer.comments"
+                  [commentableType]="'answer'"
+                  [commentableId]="answer.id">
+                  </app-comments>
+
+  </div>
+
+</div>

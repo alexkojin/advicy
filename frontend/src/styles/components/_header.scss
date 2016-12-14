@@ -1,0 +1,21 @@
+.top-navigation {
+  background-color: $top-navigation-bg-color;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+
+  .menu {
+    a {
+      color: $top-navigation-color;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .active {
+      a {
+        opacity: 0.8;
+        border-bottom: 2px solid $top-navigation-color;
+      }
+    }
+  }
+}

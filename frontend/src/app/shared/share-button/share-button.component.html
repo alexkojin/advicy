@@ -1,0 +1,30 @@
+<a class="share-button" (click)="onOpen()" title="Share a Question">
+  <i class="fi-share"></i>
+</a>
+
+<div *ngIf="isOpened">
+  <div class="tiny reveal" id="share-modal" data-reveal data-animation-in="hinge-in-from-middle-x">
+    <div class="small-12 columns">
+
+      <div>
+        <input type="text" [value]="url"  onclick="this.select()" />
+      </div>
+
+      <button class="btn-share share-fb" (click)="shareFacebook()">
+        <i class="fi-social-facebook"></i>
+      </button>
+      <button class="btn-share share-twitter" (click)="shareTwitter()">
+        <i class="fi-social-twitter"></i>
+      </button>
+      <button class="btn-share share-google-plus" (click)="shareGooglePlus()">
+        <i class="fi-social-google-plus"></i>
+      </button>
+    </div>
+    <button class="close-button" aria-label="Close modal" type="button" (click)="onClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+
+

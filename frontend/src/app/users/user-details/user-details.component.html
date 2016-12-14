@@ -1,0 +1,42 @@
+<div class="medium-12 columns user-details">
+  <div class="row">
+    <div class="small-3 columns text-center">
+      <div class="thumbnail">
+        <img src="{{user.image_url}}" class="user-image">
+      </div>
+    </div>
+
+    <div class="small-9 columns">
+      <div class="row">
+        <h2>{{user.username}}</h2>
+      </div>
+
+      <div class="row user-stats">
+        <div class='user-question-points'>Question Score: {{user.question_points}}</div>
+        <div class='user-answer-points'>Answer Score: {{user.answer_points}}</div>
+        <div class='user-badge-number'>Number of Badges: {{user.badges_count}}</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <hr>
+    <ul class="no-bullet">
+      <li *ngFor="let badge of user.badges">
+        <a href='#badges'>
+          <img class='earned-badge' src="{{badge.image_url}}" style="width: 120px;">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <hr>
+
+    <app-question-list *ngIf="user.id"
+      [filter]="{name: 'owner', value: user.id}"
+      [noItemsMessage]="'You have not asked any questions yet.'"></app-question-list>
+  </div>
+
+
+</div>

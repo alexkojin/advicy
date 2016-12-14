@@ -1,0 +1,35 @@
+.vote-control {
+  text-align: center;
+
+  .vote-up {
+    font-size: 2.8em;
+    cursor: pointer;
+    transition: color 0.5s ease 0s;
+
+    &:hover {
+      color: $vote-bg-voted-up-color;
+    }
+
+    &.voted {
+      color: $vote-bg-voted-up-color;
+    }
+  }
+
+  .vote-down {
+    @extend .vote-up;
+
+    &:hover {
+      color: $vote-bg-voted-down-color;
+    }
+
+    &.voted {
+      color: $vote-bg-voted-down-color;
+    }
+  }
+
+  .vote-count {
+    font-size: 110%;
+    line-height: 70%;
+  }
+}
+

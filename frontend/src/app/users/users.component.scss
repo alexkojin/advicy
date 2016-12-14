@@ -1,0 +1,10 @@
+.users {
+  li {
+    display: list-item;
+    list-style-type: none;
+
+    .users-item {
+      padding-bottom: 10px;
+    }
+  }
+}

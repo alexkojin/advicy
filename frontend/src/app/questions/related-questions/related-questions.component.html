@@ -1,0 +1,10 @@
+<div class="sidebar-container related-questions" *ngIf="questions.length">
+  <h4>Related</h4>
+  <ul class="no-bullet">
+    <li *ngFor="let question of questions">
+      <a [routerLink]="['/questions', question.id, question.slug]">
+        {{question.title}}
+      </a>
+    </li>
+  </ul>
+</div>

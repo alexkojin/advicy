@@ -1,0 +1,17 @@
+<li class="comment-item" *ngIf="!editModeEnabled">
+  {{comment.body}}
+  &nbsp;-&nbsp;
+  <a [routerLink]="['/users', comment.user.id, comment.user.slug]">{{comment.user.username}}</a>
+  <span>{{comment.created_at}}</span>
+  <a (click)="editModeEnabled = true" *ngIf="comment.is_owner">Edit</a>
+  <a (click)="onDelete(comment)" *ngIf="comment.is_owner">Delete</a>
+</li>
+
+<li class="comment-item" *ngIf="editModeEnabled">
+  <app-comment-form
+    [comment]="comment"
+    (onCommentSaved)="onCommentSaved($event)"
+    (onCommentCanceled)="editModeEnabled = false"
+    >
+  </app-comment-form>
+</li>

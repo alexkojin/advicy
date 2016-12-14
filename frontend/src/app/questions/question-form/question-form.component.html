@@ -1,0 +1,48 @@
+<div class="small-12 large-8 small-centered large-centered column">
+  <div *ngIf="question">
+    <h4 *ngIf="!question.id">Ask a Question</h4>
+    <h4 *ngIf="question.id">Edit a Question</h4>
+
+    <div class='callout alert' *ngIf="error">
+      <p>{{error}}</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <label>
+        Title
+        <input type="text" name="title" required
+          [(ngModel)]="question.title"
+          #title="ngModel" />
+      </label>
+      <div [class.is-visible]="!(title.valid || title.pristine)" class="form-error">
+        Title can't be blank
+      </div>
+
+      <label>
+        Description
+        <app-mdeditor [defaultValue]="question.description"></app-mdeditor>
+      </label>
+
+      <label>
+        Category
+        <select name="category_slug" [(ngModel)]="question.category_slug" required>
+          <option disabled>Select a Category</option>
+          <option *ngFor="let category of categories" value="{{category.slug}}">{{category.name}}</option>
+        </select>
+      </label>
+      <div [class.is-visible]="!(title.valid || title.pristine)" class="form-error">
+        Category can't be blank
+      </div>
+
+      <label>
+        Tags
+        <input type="text" name="tag_list" [(ngModel)]="question.tag_list"/>
+      </label>
+      <div class="help-text">Enter tags separated by commas</div>
+
+      <button type="submit" class="button float-right" *ngIf="!question.id" >Post a Question</button>
+      <button type="submit" class="button float-right" *ngIf="question.id" >Update a Question</button>
+    </form>
+  </div>
+</div>
+

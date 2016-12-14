@@ -1,0 +1,24 @@
+.flag-button {
+  display: block;
+  font-size: 1.8em;
+  color: #ccc;
+  outline: 0;
+  border: 0px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+.flag-list {
+  li {
+    padding: 5px;
+
+    &:hover {
+      background-color: #c7e5f9;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div class="medium-12 columns">
+  <div class="small-3 columns">
+    <input #search type="text" placeholder="Search Users" (keyup)="onSearchKeyUp(search.value)">
+  </div>
+  <hr>
+
+  <ul class="row small-up-2 medium-up-3 large-up-4 users">
+    <li *ngFor="let user of users | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" class="column">
+
+      <div class="row users-item">
+        <div class="small-4 columns text-center">
+          <a [routerLink]="[user.id, user.slug]" class="thumbnail">
+            <img src="{{user.image_url}}" class="profile-image">
+          </a>
+        </div>
+
+        <div class="small-8 columns">
+          <div class="row">
+            <h5 class='username'>
+              <a [routerLink]="[user.id, user.slug]">{{user.username}}</a>
+            </h5>
+          </div>
+          <div class="row inline-list">
+            <li class='user-points'>Points: {{user.points}}</li>
+            <li class='user-badge-number'>Badges: {{user.badges_count}}</li>
+          </div>
+        </div>
+      </div>
+
+    </li>
+  </ul>
+
+
+  <pagination-controls (pageChange)="getPage($event)"
+                      directionLinks="true"
+                      autoHide="true"
+                      class="text-center">
+  </pagination-controls>
+</div>
+
+
+
+<ul class="question-list">
+  <app-question-item *ngFor="let question of questions | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }" [question]="question"></app-question-item>
+</ul>
+
+

@@ -1,0 +1,47 @@
+<li class="question-item row">
+  <div class="small-2 column stats">
+    <div>
+      {{question.score}}
+      <span>Votes</span>
+    </div>
+
+    <div>
+      {{question.answers_count}}
+      <span>Answers</span>
+    </div>
+
+    <div>
+      {{question.views}}
+      <span>Views</span>
+    </div>
+  </div>
+
+  <div class="small-10 column box">
+    <h4>
+      <a routerLink="/questions/{{question.id}}/{{question.slug}}">{{question.title}}</a>
+    </h4>
+
+    <div class="row">
+      <ul class="small-6 column tags">
+        <li *ngFor="let tag of question.tags">
+          <a routerLink="/questions/tag/{{tag.name}}">{{tag.name}}</a>
+        </li>
+      </ul>
+
+      <div class="small-3 column">
+        <a routerLink="/questions/category/{{question.category.slug}}">{{question.category.name}}</a>
+
+        <span>
+          {{question.created_at}} <a [routerLink]="['/users', question.user.id, question.user.slug]">{{question.user.username}}</a>
+        </span>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+
+</li>

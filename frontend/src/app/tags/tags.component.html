@@ -1,0 +1,9 @@
+<div class="medium-12 columns">
+  <ul class="tags">
+    <li *ngFor="let tag of tags" class="normal">
+      <a routerLink="/questions/tag/{{tag.name}}">
+        {{tag.name}}
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,14 @@
+<app-answer-item  *ngFor="let answer of answers"
+                  [answer]="answer"
+                  (onDelete)="onDelete($event)"></app-answer-item>
+
+<div class="row answer-form">
+  <!-- ANSWER's FORM -->
+  <div class="small-12 column">
+    <h5>Your Answer</h5>
+
+    <app-mdeditor [defaultValue]="answer.body"></app-mdeditor>
+
+    <button type="submit" class="button float-right" (click)="onSave()">Post Answer</button>
+  </div>
+</div>

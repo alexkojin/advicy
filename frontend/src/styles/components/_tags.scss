@@ -1,0 +1,23 @@
+.tags {
+  li {
+    display: inline-block;
+    margin: 5px 5px 0px 0px;
+    padding: 0px 5px;
+    font-size: 80%;
+    list-style-type: none;
+    cursor: pointer;
+    background-color: $tag-bg-color;
+
+    &.normal {
+      font-size: 100%;
+    }
+
+    &:hover {
+      background-color: $tag-bg-hover-color;
+    }
+
+    a, a:hover {
+      color: $tag-color;
+    }
+  }
+}

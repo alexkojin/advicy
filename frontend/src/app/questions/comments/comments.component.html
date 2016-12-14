@@ -1,0 +1,20 @@
+<div class="small-12 column">
+  <ul class="no-bullet comment-list">
+    <app-comment-item
+      *ngFor="let comment of comments"
+      [comment]="comment"
+      (onCommentDeleted)="onCommentDeleted($event)">
+    </app-comment-item>
+  </ul>
+
+  <app-comment-form
+    [comment]="{commentable_id: commentableId, commentable_type: commentableType}"
+    (onCommentSaved)="onCommentSaved($event)"
+    (onCommentCanceled)="toggleForm()"
+    *ngIf="isFormOpened">
+  </app-comment-form>
+
+  <div>
+    <a (click)="toggleForm()" *ngIf="!isFormOpened">Add Comment</a>
+  </div>
+</div>

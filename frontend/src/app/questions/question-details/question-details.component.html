@@ -1,0 +1,77 @@
+
+<div class="medium-9 columns">
+  <div class="row" *ngIf="question">
+    <div class="small-1 column">
+      <app-vote-control [votableType]="'question'" [votable]='question'></app-vote-control>
+      <app-share-button [text]="question.title"></app-share-button>
+      <app-flag-button [flaggableType]="'question'" [flaggable]="question"></app-flag-button>
+    </div>
+
+    <div class="small-11 column box">
+      <h4>{{question.title}}</h4>
+      <hr />
+
+      <div class="description" [innerHTML]="question.description_html"></div>
+
+      <!-- TAGS -->
+      <div class="row">
+        <div class="small-12 column">
+          <ul class="tags">
+            <li>
+              <a routerLink="/questions/category/{{question.category.slug}}" *ngIf="question.category">{{question.category.name}}</a>
+            </li>
+            <li *ngFor="let tag of question.tags">
+              <a routerLink="/questions/tag/{{tag.name}}">{{tag.name}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-8 column">
+          <ul class="actions no-bullet inline-list">
+            <li *ngIf="question.is_owner">
+              <a [routerLink]="['/questions', question.id, question.slug, 'edit']">Edit</a>
+            </li>
+            <li *ngIf="question.is_owner">
+              <a (click)="onDelete()">Delete</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="small-4 column">
+          <div class="row" *ngIf="question.user">
+            <div class="small-3 column">
+              <div class="thumbnail">
+                <img src="{{question.user.image_url}}" class="user-image">
+              </div>
+            </div>
+            <div class="small-9 column">
+              <a [routerLink]="['/users', question.user.id, question.user.slug]">{{question.user.username}}</a>
+              <div>{{question.created_at}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- COMMENTS -->
+      <div class="row">
+        <app-comments [comments]="question.comments"
+                      [commentableType]="'question'"
+                      [commentableId]="question.id">
+                      </app-comments>
+        </div>
+
+    </div>
+  </div>
+
+  <!-- ANSWERS -->
+  <app-answers [question]="question" *ngIf="question"></app-answers>
+</div>
+
+<!-- SIDEBAR -->
+<div class="medium-3 columns">
+  <app-related-questions [questionId]="question.id" *ngIf="question"></app-related-questions>
+</div>
