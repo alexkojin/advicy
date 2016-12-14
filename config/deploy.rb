@@ -11,7 +11,7 @@ set :branch, 'master'
 set :rails_env, 'production'
 set :user, 'advicy'
 
-set :shared_dirs, ['vendor/bundle', 'public', 'log', 'tmp/cache', 'tmp/pids', 'tmp/sockets']
+set :shared_dirs, ['vendor/bundle', 'log', 'tmp/cache', 'tmp/pids', 'tmp/sockets']
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/application.yml', 'config/puma.rb')
 
 task :environment do
