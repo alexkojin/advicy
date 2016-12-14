@@ -15,7 +15,7 @@ class Question < ActiveRecord::Base
   validates :title, presence: true
 
   scope :unanswered, -> { where('questions.answers_count = 0') }
-  # currently it's simplied and retrieve most viewed questions
+  # currently it's simplified and retrieve most viewed questions
   # more about calculation popular here:
   #  http://meta.stackexchange.com/questions/11602/what-formula-should-be-used-to-determine-hot-questions
   scope :popular, -> { order('questions.views_count DESC, questions.created_at DESC') }

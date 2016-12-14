@@ -1,5 +1,5 @@
 module Api::V1
-  class Api::VotesController < ApiController
+  class VotesController < ApiController
     before_action :require_login
 
     def create

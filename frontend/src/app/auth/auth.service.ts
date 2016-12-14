@@ -20,8 +20,8 @@ export class AuthService extends ApiService {
     super();
   }
 
-  openAuthModal(showGuestForm = false) {
-    this.authModal.emit(showGuestForm);
+  openAuthModal() {
+    this.authModal.emit(true);
   }
 
   saveToLocalStorage(data) {

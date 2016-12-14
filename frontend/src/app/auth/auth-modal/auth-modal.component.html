@@ -1,4 +1,4 @@
-<div class="tiny reveal" id="auth-modal" data-reveal data-animation-in="hinge-in-from-middle-x" *ngIf="!showGuestForm">
+<div class="tiny reveal" id="auth-modal" data-reveal data-animation-in="hinge-in-from-middle-x" >
   <div class="small-12 columns">
     <h4>Signup or
       <a (click)="authService.navigateToSignIn(); close()">Log In</a>
@@ -13,51 +13,5 @@
   </button>
 </div>
 
-<!-- SHOW GUEST FORM -->
-<div class="small reveal" id="auth-modal" data-reveal data-animation-in="hinge-in-from-middle-x" *ngIf="showGuestForm">
-  <div class="small-6 columns">
-    <h4>Signup or
-      <a (click)="authService.navigateToSignIn(); close()">Log In</a>
-    </h4>
-    <a class="button" (click)="authService.navigateToOAuthFacebook();close()">Facebook Sign In</a>
 
-    <a class="button" (click)="authService.navigateToOAuthGoogle();close()">Google Sign In</a>
-
-    <a class="button" (click)="authService.navigateToSignUp(); close()">Sign Up with Email</a>
-  </div>
-
-  <div class="small-6 columns">
-    <h4>Post as a guest</h4>
-    <div class='callout alert' *ngIf="error">
-      <p>{{error}}</p>
-    </div>
-    <form (ngSubmit)="onGuestSubmit()" #f="ngForm">
-      <label>
-        Name
-        <input type="text" name="username" required
-          [(ngModel)]="guest.username"
-          #username="ngModel" />
-      </label>
-      <div [class.is-visible]="!(username.valid || username.pristine)" class="form-error">
-        Name can't be blank
-      </div>
-
-      <label>
-        Email
-        <input type="email" name="email"
-          [(ngModel)]="guest.email"
-          #email="ngModel"
-          required
-          pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
-      </label>
-      <div [class.is-visible]="!(email.valid || email.pristine)" class="form-error">Invalid email</div>
-      <button type="submit" class="button float-right" [disabled]="!f.valid">Post Answer</button>
-    </form>
-  </div>
-
-
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
 

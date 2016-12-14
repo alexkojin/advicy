@@ -9,6 +9,9 @@
 
     <app-mdeditor [defaultValue]="answer.body"></app-mdeditor>
 
-    <button type="submit" class="button float-right" (click)="onSave()">Post Answer</button>
+    <button type="submit" class="button float-right" (click)="onSave()">
+    <span *ngIf="authService.isLoggedIn()">Post Answer</span>
+    <span *ngIf="!authService.isLoggedIn()">Sign In & Post Answer</span>
+    </button>
   </div>
 </div>

@@ -8,7 +8,6 @@ import { QuestionFormComponent } from './questions/question-form/question-form.c
 import { QuestionDetailsComponent } from './questions/question-details/question-details.component';
 import { AnswerEditComponent } from './questions/answers/answer-edit/answer-edit.component';
 import { CategoriesComponent } from './questions/categories/categories.component';
-import { JobsComponent } from './jobs/jobs.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
@@ -24,7 +23,6 @@ const APP_ROUTES: Routes = [
   { path: 'password/forgot', component: ForgotPasswordComponent, canActivate: [ActiveOnSignOutGuard] },
   { path: 'password/edit/:token', component: EditPasswordComponent, canActivate: [ActiveOnSignOutGuard] },
   { path: 'oauth-complete', component: OAuthCompleteComponent, canActivate: [ActiveOnSignOutGuard] },
-  { path: 'jobs', component: JobsComponent},
   { path: 'users/:id/:slug', component: UserDetailsComponent },
   { path: 'users', component: UsersComponent },
   { path: 'tags', component: TagsComponent },

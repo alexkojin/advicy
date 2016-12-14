@@ -56,7 +56,7 @@ export class AnswersComponent implements OnChanges {
             });
       } else {
         localStorage.setItem('answer', JSON.stringify(this.answer));
-        this.authService.openAuthModal(true);
+        this.authService.openAuthModal();
       }
     }
   }

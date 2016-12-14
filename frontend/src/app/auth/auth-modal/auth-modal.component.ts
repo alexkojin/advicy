@@ -14,7 +14,6 @@ export class AuthModalComponent implements OnInit {
 
   guest: User = new User();
   error: string;
-  showGuestForm: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -23,14 +22,10 @@ export class AuthModalComponent implements OnInit {
   ngOnInit() {
     this.authService.authModal.
       subscribe(
-        showGuestForm => {
-          console.log(showGuestForm);
-          this.showGuestForm = showGuestForm;
-
+        response => {
           setTimeout(() => {
             jQuery('#auth-modal').foundation('open');
           });
-
         });
   }
 
