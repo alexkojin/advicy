@@ -17,7 +17,7 @@ class Company < ActiveRecord::Base
   validates :size, presence: true, inclusion: %w(1-10 11-50 51-200 201-500 501-1000 1001-5000 5000+)
   validates :pitch, presence: true
 
-  mount_uploader :logo, LogoUploader
+  # mount_uploader :logo, LogoUploader
 
   after_create :add_activity_on_create
 
