@@ -6,12 +6,12 @@ require 'mina/systemd'
 
 set :domain, 'advicy'
 set :deploy_to, '/home/advicy/apps/advicy'
-set :repository, 'git@bitbucket.org:alexkojin/advicy.git'
+set :repository, 'git@github.com:alexkojin/advicy.git'
 set :branch, 'master'
 set :rails_env, 'production'
 set :user, 'advicy'
 
-set :shared_dirs, ['vendor/bundle', 'log', 'tmp/cache', 'tmp/pids', 'tmp/sockets']
+set :shared_dirs, ['vendor/bundle', 'public', 'log', 'tmp/cache', 'tmp/pids', 'tmp/sockets']
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/application.yml', 'config/puma.rb')
 
 task :environment do
@@ -39,7 +39,7 @@ task deploy: :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
+    # invoke :'rails:db_migrate'
     invoke :'deploy:cleanup'
 
     on :launch do
