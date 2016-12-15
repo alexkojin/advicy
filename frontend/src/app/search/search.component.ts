@@ -3,7 +3,11 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html'
+  template: `
+    <input class="search-input"
+           type="text"
+           placeholder="Search Q&A"
+           (keyup.enter)="onEnter($event)" />`
 })
 
 export class SearchComponent {

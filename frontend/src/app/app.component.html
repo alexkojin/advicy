@@ -1,10 +1,88 @@
-<app-header></app-header>
+<div class="off-canvas-wrapper">
+  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    <!-- off-canvas left menu -->
+    <div class="off-canvas position-left navigation" id="offCanvasLeft" data-off-canvas>
+      <ul class="vertical dropdown menu" data-dropdown-menu>
+        <li *ngIf="!auth.isLoggedIn()"><a (click)='auth.navigateToSignIn()' data-toggle="offCanvasLeft">Sign In</a></li>
+        <li *ngIf="auth.isLoggedIn()">
+          <div class="row">
+            <div class="small-4 column">
+              <img src="{{auth.currentUser().image_url}}" class="thumbnail">
+            </div>
+            <div class="small-8 column">
+              <a [routerLink]="['/users', auth.currentUser().id, auth.currentUser().slug]"  data-toggle="offCanvasLeft">
+                {{auth.currentUser().username}}
+              </a>
+            </div>
 
-<div class="row" id="main-content">
-  <router-outlet></router-outlet>
+          </div>
+
+        </li>
+        <li *ngIf="auth.isLoggedIn()">
+          <a (click)='auth.signOut()' data-toggle="offCanvasLeft">Sign Out</a>
+        </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-toggle="offCanvasLeft">
+          <a routerLink=''>Questions</a>
+        </li>
+        <li routerLinkActive="active"><a routerLink='/tags' data-toggle="offCanvasLeft">Tags</a></li>
+        <li routerLinkActive="active"><a routerLink='/users' data-toggle="offCanvasLeft">Users</a></li>
+        <li routerLinkActive="active"><a routerLink="/categories" data-toggle="offCanvasLeft">Categories</a></li>
+        <li routerLinkActive="active"><a routerLink="/questions/new" data-toggle="offCanvasLeft">Ask a Question</a></li>
+      </ul>
+    </div>
+
+    <div class="off-canvas-content" data-off-canvas-content>
+      <!-- off-canvas title bar for 'small' screen -->
+      <div class="title-bar navigation" data-responsive-toggle="widemenu" data-hide-for="medium">
+        <div class="title-bar-left">
+          <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+          <span class="title-bar-title">Advicy</span>
+        </div>
+        <div class="title-bar-right">
+          <app-search></app-search>
+        </div>
+      </div>
+
+      <!-- "wider" top-bar menu for 'medium' and up -->
+      <div id="widemenu" class="top-bar navigation">
+        <div class="top-bar-left">
+          <ul class="vertical medium-horizontal menu">
+            <li class="menu-text">Advicy</li>
+            <li>
+              <app-search></app-search>
+            </li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a routerLink=''>Questions</a>
+            </li>
+            <li routerLinkActive="active"><a routerLink='/tags'>Tags</a></li>
+            <li routerLinkActive="active"><a routerLink='/users'>Users</a></li>
+            <li routerLinkActive="active"><a routerLink="/categories">Categories</a></li>
+            <li routerLinkActive="active"><a routerLink="/questions/new">Ask a Question</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="vertical medium-horizontal menu">
+            <li *ngIf="!auth.isLoggedIn()"><a (click)='auth.navigateToSignIn()'>Sign In</a></li>
+            <li *ngIf="auth.isLoggedIn()">
+              <a [routerLink]="['/users', auth.currentUser().id, auth.currentUser().slug]">
+                {{auth.currentUser().username}}
+              </a>
+            </li>
+            <li *ngIf="auth.isLoggedIn()">
+              <a (click)='auth.signOut()'>Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" id="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <app-auth-modal></app-auth-modal>
+    <app-flag-modal></app-flag-modal>
+  </div>
 </div>
-
-<app-auth-modal></app-auth-modal>
-<app-flag-modal></app-flag-modal>
 
 

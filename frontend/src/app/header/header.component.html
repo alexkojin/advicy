@@ -1,4 +1,73 @@
-<nav class="top-navigation">
+<!-- off-canvas title bar for 'small' screen -->
+<!-- <div class="title-bar top-navigation" data-responsive-toggle="widemenu" data-hide-for="medium">
+  <div class="title-bar-left">
+    <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+    <span class="title-bar-title">Advicy</span>
+  </div>
+  <div class="title-bar-right">
+    <app-search></app-search>
+  </div>
+</div> -->
+
+<!-- off-canvas left menu -->
+<div class="off-canvas position-left navigation" id="offCanvasLeft" data-off-canvas>
+  <ul class="vertical dropdown menu" data-dropdown-menu>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink=''>Questions</a>
+    </li>
+    <li routerLinkActive="active"><a routerLink='/tags'>Tags</a></li>
+    <li routerLinkActive="active"><a routerLink='/users'>Users</a></li>
+    <li routerLinkActive="active"><a routerLink="/categories">Categories</a></li>
+    <li routerLinkActive="active"><a routerLink="/questions/new">Ask a Question</a></li>
+
+    <li *ngIf="!auth.isLoggedIn()"><a (click)='auth.navigateToSignIn()'>Sign In</a></li>
+    <li *ngIf="auth.isLoggedIn()">
+      <a [routerLink]="['/users', auth.currentUser().id, auth.currentUser().slug]">
+        {{auth.currentUser().username}}
+      </a>
+    </li>
+    <li *ngIf="auth.isLoggedIn()">
+      <a (click)='auth.signOut()'>Sign Out</a>
+    </li>
+  </ul>
+</div>
+
+<!-- "wider" top-bar menu for 'medium' and up -->
+<!-- <div id="widemenu" class="top-bar top-navigation">
+  <div class="top-bar-left">
+    <ul class="vertical medium-horizontal menu">
+      <li class="menu-text">Advicy</li>
+      <li>
+        <app-search></app-search>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink=''>Questions</a>
+      </li>
+      <li routerLinkActive="active"><a routerLink='/tags'>Tags</a></li>
+      <li routerLinkActive="active"><a routerLink='/users'>Users</a></li>
+      <li routerLinkActive="active"><a routerLink="/categories">Categories</a></li>
+      <li routerLinkActive="active"><a routerLink="/questions/new">Ask a Question</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="vertical medium-horizontal menu">
+      <li *ngIf="!auth.isLoggedIn()"><a (click)='auth.navigateToSignIn()'>Sign In</a></li>
+      <li *ngIf="auth.isLoggedIn()">
+        <a [routerLink]="['/users', auth.currentUser().id, auth.currentUser().slug]">
+          {{auth.currentUser().username}}
+        </a>
+      </li>
+      <li *ngIf="auth.isLoggedIn()">
+        <a (click)='auth.signOut()'>Sign Out</a>
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+
+
+
+<!-- <nav class="top-navigation">
   <div class="title-bar stacked-for-medium" data-responsive-toggle="top-menu" data-hide-for="medium">
     <button class="menu-icon" type="button" data-toggle></button>
     <div class="title-bar-title">Advicy</div>
@@ -33,4 +102,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->

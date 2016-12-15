@@ -25,6 +25,13 @@ body {
   }
 }
 
+// 100% height .off-canvas
+.off-canvas-wrapper-inner,
+.off-canvas,
+.off-canvas-content {
+  min-height: 100vh;
+}
+
 // Preventing FOUC
 .no-js {
   @include breakpoint(small only) {
