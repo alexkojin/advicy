@@ -24,7 +24,6 @@ import { ShareService } from './shared/share-modal/share.service';
 import { ViewService } from './shared/view.service';
 import { FlagService } from './shared/flag/flag.service';
 
-import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 
 import { QuestionsComponent } from './questions/questions.component';
@@ -65,7 +64,6 @@ export function authFactory(http: Http, options: RequestOptions) {
   }), http, options);
 };
 
-// Include this in your ngModule providers
 export const authProvider = {
   provide: AuthHttp,
   deps: [Http, RequestOptions],
@@ -80,7 +78,6 @@ export const authProvider = {
     QuestionItemComponent,
     QuestionDetailsComponent,
     SearchComponent,
-    HeaderComponent,
     JobsComponent,
     TagsComponent,
     UsersComponent,
