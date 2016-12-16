@@ -16,8 +16,8 @@ json.category do
 end
 
 json.user do
-  json.extract! @question.asker, :id, :username, :image_url
-  json.slug @question.asker.username.parameterize
+  json.extract! @question.asker, :id, :username, :slug
+  json.image_url @question.asker.image_url(:thumb)
 end
 
 json.answers do

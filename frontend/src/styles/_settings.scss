@@ -1,3 +1,32 @@
+// Colors
+$light-gray: #fafafa;
+$middle-gray: #878787;
+$white: #fff;
+
+// Global
+$body-font-family: Roboto, Arial, sans-serif;
+$body-background: $light-gray;
+
+// Typography
+$header-sizes: (
+  small: (
+    'h1': 24,
+    'h2': 20,
+    'h3': 19,
+    'h4': 18,
+    'h5': 17,
+    'h6': 16,
+  ),
+  medium: (
+    'h1': 32,
+    'h2': 24,
+    'h3': 22,
+    'h4': 18,
+    'h5': 16,
+    'h6': 14,
+  ),
+);
+
 // header navigation
 $top-navigation-bg-color: rgba(4, 139, 154, 0.8);
 $top-navigation-color: #fff;

@@ -35,8 +35,17 @@ class User < ActiveRecord::Base
     self.name.parameterize
   end
 
-  def image_url
-    self[:image_url] || DEFAULT_IMAGE_URL
+  # Return url for user's avatar image
+  #  @param size [symbol] set size of return image (:default, :thumb)
+  def image_url(size = :default)
+    if self[:image_url]
+      self[:image_url]
+    else
+      gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+      size_param = size == :thumb ? '&s=50' : '&s=200'
+
+      "http://gravatar.com/avatar/#{gravatar_id}.png?d=identicon&r=pg#{size_param}"
+    end
   end
 
   def points
