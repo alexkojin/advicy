@@ -1,10 +1,19 @@
 <li class="comment-item" *ngIf="!editModeEnabled">
+  <div class="comment-header clearfix">
+    <a [routerLink]="['/users', comment.user.id, comment.user.slug]">{{comment.user.username}}</a>
+    <span>{{comment.created_at}}</span>
+
+    <app-action-menu [id]="comment.id">
+      <li>
+        <a (click)="editModeEnabled = true" *ngIf="comment.is_owner"><i class="fa fa-pencil"></i> Edit</a>
+      </li>
+      <li>
+        <a (click)="onDelete(comment)" *ngIf="comment.is_owner"><i class="fa fa-trash"></i> Delete</a>
+      </li>
+    </app-action-menu>
+  </div>
+
   {{comment.body}}
-  &nbsp;-&nbsp;
-  <a [routerLink]="['/users', comment.user.id, comment.user.slug]">{{comment.user.username}}</a>
-  <span>{{comment.created_at}}</span>
-  <a (click)="editModeEnabled = true" *ngIf="comment.is_owner">Edit</a>
-  <a (click)="onDelete(comment)" *ngIf="comment.is_owner">Delete</a>
 </li>
 
 <li class="comment-item" *ngIf="editModeEnabled">

@@ -1,0 +1,33 @@
+.comments {
+  .comment-list {
+    background-color: $light-gray;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+
+    app-comment-item:last-child .comment-item {
+      border: 0px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .comment-item {
+      .comment-header {
+        font-style: italic;
+
+        app-action-menu {
+          float: right;
+        }
+      }
+
+      border-bottom: 1px solid $medium-gray;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .comment-form {
+    background-color: $light-gray;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+}

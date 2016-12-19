@@ -4,13 +4,14 @@ import { Comment } from './comment';
 import { CommentService } from './comment.service';
 import { AuthService } from '../../auth/auth.service';
 
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   providers: [ CommentService]
 })
 
-export class CommentsComponent {
+export class CommentsComponent{
   @Input() isFormOpened: boolean = false;
 
   @Input() commentableId: any;

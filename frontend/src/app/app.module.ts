@@ -56,6 +56,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { EditPasswordComponent } from './auth/edit-password/edit-password.component';
 import { CommentItemComponent } from './questions/comments/comment-item.component';
 import { CommentFormComponent } from './questions/comments/comment-form.component';
+import { ActionMenuComponent } from './shared/action-menu/action-menu.component';
 
 export function authFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -103,7 +104,8 @@ export const authProvider = {
     ForgotPasswordComponent,
     EditPasswordComponent,
     CommentItemComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    ActionMenuComponent
   ],
   imports: [
     BrowserModule,

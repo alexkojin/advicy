@@ -1,5 +1,5 @@
-<div class="small-12 column">
-  <ul class="no-bullet comment-list">
+<div class="small-12 column comments">
+  <ul class="no-bullet comment-list" *ngIf="comments.length > 0">
     <app-comment-item
       *ngFor="let comment of comments"
       [comment]="comment"
@@ -15,6 +15,6 @@
   </app-comment-form>
 
   <div>
-    <a (click)="toggleForm()" *ngIf="!isFormOpened">Add Comment</a>
+    <a (click)="toggleForm()" *ngIf="!isFormOpened">+ add a comment</a>
   </div>
 </div>

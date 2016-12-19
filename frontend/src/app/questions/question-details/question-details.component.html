@@ -50,9 +50,6 @@
       <div class="row">
         <div class="small-12 column">
           <ul class="tags">
-            <li>
-              <a routerLink="/questions/category/{{question.category.slug}}" *ngIf="question.category">{{question.category.name}}</a>
-            </li>
             <li *ngFor="let tag of question.tags">
               <a routerLink="/questions/tag/{{tag.name}}">{{tag.name}}</a>
             </li>
@@ -61,8 +58,8 @@
       </div>
 
       <div class="row">
-        <div class="small-8 column">
-          <ul class="actions no-bullet inline-list">
+        <div class="small-12 column">
+          <ul class="actions no-bullet inline-list float-right">
             <li *ngIf="question.is_owner">
               <a [routerLink]="['/questions', question.id, question.slug, 'edit']">Edit</a>
             </li>
@@ -70,20 +67,6 @@
               <a (click)="onDelete()">Delete</a>
             </li>
           </ul>
-        </div>
-
-        <div class="small-4 column">
-          <div class="row" *ngIf="question.user">
-            <div class="small-3 column">
-              <div class="thumbnail">
-                <img src="{{question.user.image_url}}" class="user-image">
-              </div>
-            </div>
-            <div class="small-9 column">
-              <a [routerLink]="['/users', question.user.id, question.user.slug]">{{question.user.username}}</a>
-              <div>{{question.created_at}}</div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -95,7 +78,7 @@
                       [commentableType]="'question'"
                       [commentableId]="question.id">
                       </app-comments>
-        </div>
+      </div>
 
     </div>
   </div>

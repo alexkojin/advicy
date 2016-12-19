@@ -18,6 +18,13 @@
   border-radius: 3px;
 }
 
+pre {
+  code {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
 // 100% height .off-canvas
 .off-canvas-wrapper-inner,
 .off-canvas,

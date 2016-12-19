@@ -1,7 +1,10 @@
-<div class="comment-form">
+<div class="comment-form clearfix">
   <form (ngSubmit)="onSubmit()">
-    <textarea name="body" required [(ngModel)]="comment.body"></textarea>
-    <button type="submit" class="small button float-right">Post Comment</button>
-    <a (click)="onCancel()" class="float-right">cancel</a>
+    <textarea name="body" required [(ngModel)]="comment.body" tabindex="1"></textarea>
+
+    <div class="float-right">
+      <a (click)="onCancel()">cancel</a>
+      <button type="submit" class="small button">Post Comment</button>
+    </div>
   </form>
 </div>
