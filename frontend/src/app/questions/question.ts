@@ -1,3 +1,5 @@
+import { Answer } from './answers/answer';
+
 export class Question {
   id: number;
   title: string;
@@ -5,6 +7,6 @@ export class Question {
   description: string;
   description_html: string;
   category_slug: string;
-  answers: any;
+  answers: Answer[];
   tag_list: Array<String>
 }

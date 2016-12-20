@@ -1,9 +1,18 @@
-.question-details {
+app-question-details {
   .stats {
     text-align: center;
     color: $dark-gray;
     li {
       margin-left: 1.2rem;
     }
+  }
+
+  app-answer-item {
+
+    app-vote-control {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+
   }
 }

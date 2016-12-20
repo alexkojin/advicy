@@ -23,6 +23,7 @@ declare var jQuery:any;
 
 })
 export class ActionMenuComponent implements AfterViewInit {
+  // id should be unique domId. TODO be sure always set unique id
   @Input() id: string;
 
   get domId(){

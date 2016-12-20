@@ -16,7 +16,7 @@ export class AnswerService extends ApiService {
 
   createAnswer(answer: any): Observable<any> {
     let body = JSON.stringify(answer);
-    return this.authHttp.post(`${this.API_URL}/answers`, body, { headers: this.contentHeaders })
+    return this.authHttp.post(`${this.API_URL}/answers`, body)
       .map((response: Response) => response.json());
   }
 

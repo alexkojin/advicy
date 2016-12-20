@@ -7,9 +7,9 @@ import { VoteService } from './vote.service';
   selector: 'app-vote-control',
   template: `
     <div class="vote-control" *ngIf="votable">
-      <div class="fa fa-angle-up vote-up " (click)="onVote($event, 1)"></div>
+      <div class="fa fa-angle-left vote-up " (click)="onVote($event, 1)"></div>
       <div class="vote-count text-center">{{votable.score}}</div>
-      <div class="fa fa-angle-down vote-down" (click)="onVote($event, -1)"></div>
+      <div class="fa fa-angle-right vote-down" (click)="onVote($event, -1)"></div>
     </div>
   `
 })
