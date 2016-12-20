@@ -1,10 +1,25 @@
 <div class="row answer-item">
   <a id="a{{answer.id}}" name="a{{answer.id}}"></a>
-  <div class="small-1 column">
+  <!-- <div class="small-1 column">
     <app-vote-control [votableType]="'answer'" [votable]='answer'></app-vote-control>
-  </div>
+  </div> -->
 
-  <div class="small-11 column box">
+  <div class="small-12 column box">
+    <!-- Author & Stats -->
+    <div class="clearfix">
+      <div class="media-object float-left">
+        <a class="media-object-section" [routerLink]="['/users', answer.user.id, answer.user.slug]">
+          <img src="{{answer.user.image_url}}" class="avatar-small">
+        </a>
+        <div class="media-object-section">
+          <a [routerLink]="['/users', answer.user.id, answer.user.slug]">
+            {{answer.user.username}}
+          </a>
+          <span>{{answer.created_at}}</span>
+        </div>
+      </div>
+    </div>
+
     <div class="answer-body" [innerHTML]="answer.body_html">
     </div>
 

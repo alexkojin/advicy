@@ -25,6 +25,14 @@ pre {
   }
 }
 
+pre {
+  background-color: $light-gray;
+}
+
+code {
+  border: 0px none;
+}
+
 // 100% height .off-canvas
 .off-canvas-wrapper-inner,
 .off-canvas,
