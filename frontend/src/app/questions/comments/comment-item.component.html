@@ -4,11 +4,11 @@
     <span>{{comment.created_at}}</span>
 
     <app-action-menu [id]="comment.id">
-      <li>
-        <a (click)="editModeEnabled = true" *ngIf="comment.is_owner"><i class="fa fa-pencil"></i> Edit</a>
+      <li *ngIf="comment.is_owner">
+        <a (click)="editModeEnabled = true"><i class="fa fa-pencil"></i> Edit</a>
       </li>
-      <li>
-        <a (click)="onDelete(comment)" *ngIf="comment.is_owner"><i class="fa fa-trash"></i> Delete</a>
+      <li *ngIf="comment.is_owner">
+        <a (click)="onDelete(comment)"><i class="fa fa-trash"></i> Delete</a>
       </li>
     </app-action-menu>
   </div>

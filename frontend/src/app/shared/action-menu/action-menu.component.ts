@@ -6,7 +6,7 @@ declare var jQuery:any;
   selector: 'app-action-menu',
   template: `
     <a class="action-menu-toggler" [attr.data-toggle]="domId" data-close-on-click="true">
-      <i class="fa fa-angle-down"></i>
+      <i class="fa fa-ellipsis-v"></i>
     </a>
     <div class="small dropdown-pane" [id]="domId" data-dropdown>
       <ul class="no-bullet">
@@ -16,7 +16,7 @@ declare var jQuery:any;
   `,
   styles: [`
     .action-menu-toggler {
-      font-size: 1.5rem;
+      font-size: 1rem;
       line-height: 1rem;
     }
   `]
