@@ -1,49 +1,48 @@
-<div class="row answer-item">
-  <a id="a{{answer.id}}" name="a{{answer.id}}"></a>
-  <div class="small-12 column box">
-    <!-- Author & Stats -->
-    <div class="clearfix">
-      <div class="media-object float-left">
-        <a class="media-object-section" [routerLink]="['/users', answer.user.id, answer.user.slug]">
-          <img src="{{answer.user.image_url}}" class="avatar-small">
+
+<a id="a{{answer.id}}" name="a{{answer.id}}"></a>
+<div class="small-12 column box">
+  <!-- Author & Stats -->
+  <div class="clearfix">
+    <div class="media-object float-left">
+      <a class="media-object-section" [routerLink]="['/users', answer.user.id, answer.user.slug]">
+        <img src="{{answer.user.image_url}}" class="avatar-small">
+      </a>
+      <div class="media-object-section">
+        <a [routerLink]="['/users', answer.user.id, answer.user.slug]">
+          {{answer.user.username}}
         </a>
-        <div class="media-object-section">
-          <a [routerLink]="['/users', answer.user.id, answer.user.slug]">
-            {{answer.user.username}}
-          </a>
-          <span>{{answer.created_at}}</span>
-        </div>
-      </div>
-
-      <div class="float-right">
-        <app-vote-control [votableType]="'answer'" [votable]='answer'></app-vote-control>
+        <span>{{answer.created_at}}</span>
       </div>
     </div>
 
-    <div class="answer-body" [innerHTML]="answer.body_html"></div>
-
-    <div class="clearfix">
-      <div class="float-right">
-        <app-share-button [text]=""></app-share-button>
-        <app-action-menu [id]="answer.id">
-          <li *ngIf="answer.is_owner">
-            <a [routerLink]="['/questions', answer.question_id, answer.question_slug, 'answers', answer.id, 'edit']"><i class="fa fa-pencil"></i> Edit</a>
-          </li>
-          <li *ngIf="answer.is_owner">
-            <a (click)="onDeleteClick()"><i class="fa fa-trash"></i> Delete</a>
-          </li>
-          <li>
-            <app-flag-button [flaggableType]="'answer'" [flaggable]="answer"></app-flag-button>
-          </li>
-        </app-action-menu>
-      </div>
+    <div class="float-right">
+      <app-vote-control [votableType]="'answer'" [votable]='answer'></app-vote-control>
     </div>
-
-    <app-comments [comments]="answer.comments"
-                  [commentableType]="'answer'"
-                  [commentableId]="answer.id">
-                  </app-comments>
-
   </div>
 
+  <div class="answer-body" [innerHTML]="answer.body_html"></div>
+
+  <div class="clearfix">
+    <div class="float-right">
+      <app-share-button [text]=""></app-share-button>
+      <app-action-menu [id]="answer.id">
+        <li *ngIf="answer.is_owner">
+          <a [routerLink]="['/questions', answer.question_id, answer.question_slug, 'answers', answer.id, 'edit']"><i class="fa fa-pencil"></i> Edit</a>
+        </li>
+        <li *ngIf="answer.is_owner">
+          <a (click)="onDeleteClick()"><i class="fa fa-trash"></i> Delete</a>
+        </li>
+        <li>
+          <app-flag-button [flaggableType]="'answer'" [flaggable]="answer"></app-flag-button>
+        </li>
+      </app-action-menu>
+    </div>
+  </div>
+
+  <app-comments [comments]="answer.comments"
+                [commentableType]="'answer'"
+                [commentableId]="answer.id">
+                </app-comments>
+
 </div>
+

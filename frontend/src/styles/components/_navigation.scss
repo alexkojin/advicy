@@ -19,6 +19,14 @@
     }
   }
 
+  .nav-title {
+    font-size: 1.5rem;
+    font-family: $cursive-font-family;
+    font-weight: normal;
+    line-height: 1rem;
+    color: $top-navigation-color;
+  }
+
   .search-input {
     height: 1.8rem;
     padding-left: 0.8rem;

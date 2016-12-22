@@ -1,84 +1,76 @@
 
 <div class="medium-9 columns">
-  <div class="row" *ngIf="question">
-    <!-- <div class="small-1 column">
-      <app-vote-control [votableType]="'question'" [votable]='question'></app-vote-control>
-      <app-share-button [text]="question.title"></app-share-button>
-      <app-flag-button [flaggableType]="'question'" [flaggable]="question"></app-flag-button>
-    </div> -->
-
-    <div class="small-12 column box question-details">
-      <!-- Author & Stats -->
-      <div class="clearfix">
-        <div class="media-object float-left">
-          <a class="media-object-section" [routerLink]="['/users', question.user.id, question.user.slug]">
-            <img src="{{question.user.image_url}}" class="avatar">
+  <div class="small-12 column box question-details" *ngIf="question">
+    <!-- Author & Stats -->
+    <div class="clearfix">
+      <div class="media-object float-left">
+        <a class="media-object-section" [routerLink]="['/users', question.user.id, question.user.slug]">
+          <img src="{{question.user.image_url}}" class="avatar">
+        </a>
+        <div class="media-object-section">
+          <a [routerLink]="['/users', question.user.id, question.user.slug]">
+            {{question.user.username}}
           </a>
-          <div class="media-object-section">
-            <a [routerLink]="['/users', question.user.id, question.user.slug]">
-              {{question.user.username}}
-            </a>
-            <p>
-              {{question.created_at}}
-            </p>
-          </div>
-        </div>
-        <!-- Stats -->
-        <div class="float-right stats">
-          <ul class="inline-list no-bullet">
-            <li>
-              <div class="stat">{{question.answers_count}}</div>answers
-            </li>
-            <li>
-              <div class="stat">{{question.views}}</div>views
-            </li>
-            <li>
-              <div class="stat">{{question.score}}</div>score
-            </li>
-          </ul>
+          <p>
+            {{question.created_at}}
+          </p>
         </div>
       </div>
-
-      <!-- Question Title & Body -->
-      <div>
-        <h2>{{question.title}}</h2>
-        <div class="description" [innerHTML]="question.description_html"></div>
+      <!-- Stats -->
+      <div class="float-right stats">
+        <ul class="inline-list no-bullet">
+          <li>
+            <div class="stat">{{question.answers_count}}</div>answers
+          </li>
+          <li>
+            <div class="stat">{{question.views}}</div>views
+          </li>
+          <li>
+            <div class="stat">{{question.score}}</div>score
+          </li>
+        </ul>
       </div>
-
-
-      <!-- Tags -->
-      <div class="row">
-        <div class="small-12 column">
-          <ul class="tags">
-            <li *ngFor="let tag of question.tags">
-              <a routerLink="/questions/tag/{{tag.name}}">{{tag.name}}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-12 column">
-          <ul class="actions no-bullet inline-list float-right">
-            <li *ngIf="question.is_owner">
-              <a [routerLink]="['/questions', question.id, question.slug, 'edit']">Edit</a>
-            </li>
-            <li *ngIf="question.is_owner">
-              <a (click)="onDelete()">Delete</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- COMMENTS -->
-      <div class="row">
-        <app-comments [comments]="question.comments"
-                      [commentableType]="'question'"
-                      [commentableId]="question.id">
-                      </app-comments>
-      </div>
-
     </div>
+
+    <!-- Question Title & Body -->
+    <div>
+      <h2>{{question.title}}</h2>
+      <div class="description" [innerHTML]="question.description_html"></div>
+    </div>
+
+
+    <!-- Tags -->
+    <div class="row">
+      <div class="small-12 column">
+        <ul class="tags">
+          <li *ngFor="let tag of question.tags">
+            <a routerLink="/questions/tag/{{tag.name}}">{{tag.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 column">
+        <ul class="actions no-bullet inline-list float-right">
+          <li *ngIf="question.is_owner">
+            <a [routerLink]="['/questions', question.id, question.slug, 'edit']">Edit</a>
+          </li>
+          <li *ngIf="question.is_owner">
+            <a (click)="onDelete()">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="row">
+      <app-comments [comments]="question.comments"
+                    [commentableType]="'question'"
+                    [commentableId]="question.id">
+                    </app-comments>
+    </div>
+
   </div>
 
   <!-- ANSWERS -->
