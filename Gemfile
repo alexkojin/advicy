@@ -29,8 +29,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 
+  gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', require: false
+  gem 'terminal-notifier-guard'
 end
 
 group :development do
