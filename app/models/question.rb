@@ -12,7 +12,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :category
 
-  validates :title, presence: true
+  validates :title, :asker, :category, presence: true
 
   scope :unanswered, -> { where('questions.answers_count = 0') }
   # currently it's simplified and retrieve most viewed questions

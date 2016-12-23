@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   # Support old username
   alias_attribute :username, :name
 
-  DEFAULT_IMAGE_URL = 'http://res.cloudinary.com/charliecloud/image/upload/v1434941598/logo_cqo72p.png'
-
   paginates_per 20
 
   has_many :questions, class_name: 'Question', foreign_key: :asker_id, dependent: :destroy
@@ -29,6 +27,8 @@ class User < ActiveRecord::Base
 
   has_many :companies, dependent: :destroy, foreign_key: :owner_id
   has_many :jobs, dependent: :destroy, foreign_key: :owner_id
+
+  validates :name, presence: true
 
 
   def slug

@@ -32,6 +32,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'guard-rspec'
   gem 'rb-fsevent', require: false
   gem 'terminal-notifier-guard'

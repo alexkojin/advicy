@@ -1,11 +1,11 @@
 class Answer < ActiveRecord::Base
-  validates :question_id, :body, :answerer_id, presence: true
-
   belongs_to :answerer, class_name: 'User', foreign_key: :answerer_id
   belongs_to :question, counter_cache: true
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
+
+  validates :question, :answerer, :body, presence: true
 
   def owner?(user)
     user.present? && answerer_id == user.id
