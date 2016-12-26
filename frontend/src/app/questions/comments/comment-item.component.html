@@ -10,6 +10,9 @@
       <li *ngIf="comment.is_owner">
         <a (click)="onDelete(comment)"><i class="fa fa-trash"></i> Delete</a>
       </li>
+      <li>
+        <app-flag-button *ngIf="!comment.is_owner" [flaggableType]="'comment'" [flaggable]="comment"></app-flag-button>
+      </li>
     </app-action-menu>
   </div>
 
