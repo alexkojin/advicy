@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203195111) do
+ActiveRecord::Schema.define(version: 20161226081009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,16 +110,6 @@ ActiveRecord::Schema.define(version: 20161203195111) do
     t.index ["job_id", "kind"], name: "index_educations_on_job_id_and_kind", unique: true, using: :btree
   end
 
-  create_table "experiences", force: :cascade do |t|
-    t.integer  "job_id",     null: false
-    t.string   "experience", null: false
-    t.string   "kind",       null: false
-    t.integer  "importance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id", "kind"], name: "index_experiences_on_job_id_and_kind", unique: true, using: :btree
-  end
-
   create_table "flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "flaggable_id"
@@ -130,52 +120,6 @@ ActiveRecord::Schema.define(version: 20161203195111) do
     t.datetime "updated_at",     null: false
     t.index ["flaggable_id", "flaggable_type"], name: "index_flags_on_flaggable_id_and_flaggable_type", using: :btree
     t.index ["user_id", "flaggable_id", "flaggable_type"], name: "index_flags_on_user_id_and_flaggable_id_and_flaggable_type", using: :btree
-  end
-
-  create_table "job_roles", force: :cascade do |t|
-    t.integer  "job_id",     null: false
-    t.integer  "role_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["job_id", "role_id"], name: "index_job_roles_on_job_id_and_role_id", unique: true, using: :btree
-  end
-
-  create_table "job_skills", force: :cascade do |t|
-    t.integer  "skill_id",               null: false
-    t.integer  "job_id"
-    t.integer  "importance", default: 2, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["job_id", "skill_id"], name: "index_job_skills_on_job_id_and_skill_id", unique: true, using: :btree
-  end
-
-  create_table "jobs", force: :cascade do |t|
-    t.integer  "owner_id",                                                                     null: false
-    t.integer  "company_id",                                                                   null: false
-    t.string   "title",                                                                        null: false
-    t.text     "description"
-    t.string   "job_type",                                               default: "full-time", null: false
-    t.string   "location",                                                                     null: false
-    t.string   "coworkers"
-    t.boolean  "remote",                                                 default: false
-    t.boolean  "international",                                          default: false
-    t.decimal  "salary_min",                     precision: 8, scale: 2,                       null: false
-    t.decimal  "salary_max",                     precision: 8, scale: 2,                       null: false
-    t.string   "currency",                                               default: "USD",       null: false
-    t.integer  "equity_min",                                                                   null: false
-    t.integer  "equity_max",                                                                   null: false
-    t.decimal  "equity_vest",                    precision: 8, scale: 2, default: "4.0",       null: false
-    t.decimal  "equity_cliff",                   precision: 8, scale: 2, default: "1.0",       null: false
-    t.boolean  "notify_email",                                           default: true
-    t.integer  "notify_phone_code"
-    t.string   "notify_phone"
-    t.datetime "created_at",                                                                   null: false
-    t.datetime "updated_at",                                                                   null: false
-    t.string   "notify_phone_country", limit: 2,                         default: "us",        null: false
-    t.integer  "primary_role_id",                                                              null: false
-    t.index ["company_id"], name: "index_jobs_on_company_id", using: :btree
-    t.index ["owner_id"], name: "index_jobs_on_owner_id", using: :btree
-    t.index ["title"], name: "index_jobs_on_title", unique: true, using: :btree
   end
 
   create_table "old_users", force: :cascade do |t|
@@ -195,15 +139,6 @@ ActiveRecord::Schema.define(version: 20161203195111) do
     t.index ["username"], name: "index_old_users_on_username", using: :btree
   end
 
-  create_table "ownedbadges", force: :cascade do |t|
-    t.integer  "owner_id",   null: false
-    t.integer  "badge_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["badge_id"], name: "index_ownedbadges_on_badge_id", using: :btree
-    t.index ["owner_id"], name: "index_ownedbadges_on_owner_id", using: :btree
-  end
-
   create_table "questions", force: :cascade do |t|
     t.integer  "asker_id",                     null: false
     t.string   "title",                        null: false
@@ -218,29 +153,6 @@ ActiveRecord::Schema.define(version: 20161203195111) do
     t.index ["answers_count", "created_at"], name: "index_questions_on_answers_count_and_created_at", using: :btree
     t.index ["asker_id"], name: "index_questions_on_asker_id", using: :btree
     t.index ["title"], name: "index_questions_on_title", using: :btree
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "follower_id"
-    t.integer  "following_id"
-    t.string   "following_type"
-    t.datetime "created_at",     null: false
-    t.index ["follower_id", "following_type", "following_id"], name: "index_relationships", unique: true, using: :btree
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "category",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "category"], name: "index_roles_on_name_and_category", unique: true, using: :btree
-  end
-
-  create_table "skills", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_skills_on_name", unique: true, using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|
