@@ -1,5 +1,8 @@
 language: ruby
 rvm:
   - 2.3.1
+services:
+  - postgresql
 before_script:
+  - psql -c 'create database advicy_test;' -U postgres
   - cp config/database.yml.example config/database.yml
