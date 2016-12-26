@@ -5,10 +5,10 @@ declare var jQuery:any;
 @Component({
   selector: 'app-action-menu',
   template: `
-    <a class="action-menu-toggler" [attr.data-toggle]="domId" data-close-on-click="true">
+    <a class="action-menu-toggler" [attr.data-toggle]="domId">
       <i class="fa fa-ellipsis-v"></i>
     </a>
-    <div class="small dropdown-pane" [id]="domId" data-dropdown>
+    <div class="small dropdown-pane" [id]="domId" data-dropdown data-close-on-click="true">
       <ul class="no-bullet">
         <ng-content></ng-content>
       </ul>
