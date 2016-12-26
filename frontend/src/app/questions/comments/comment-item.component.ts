@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Comment } from './comment';
 import { CommentService } from './comment.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../../auth/auth.service';
   selector: 'app-comment-item',
   templateUrl: './comment-item.component.html'
 })
-export class CommentItemComponent implements OnInit {
+export class CommentItemComponent {
   @Input() comment: Comment;
   @Output() onCommentDeleted = new EventEmitter<Comment>();
 
@@ -18,7 +18,8 @@ export class CommentItemComponent implements OnInit {
     private commentService: CommentService,
     private authService: AuthService) { }
 
-  ngOnInit() {
+  getDomId() {
+    return `comment-${this.comment.id}`;
   }
 
   onCommentSaved(comment: Comment) {

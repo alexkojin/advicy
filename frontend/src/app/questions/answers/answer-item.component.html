@@ -24,7 +24,7 @@
 
   <div class="clearfix">
     <div class="float-right">
-      <app-action-menu [id]="answer.id">
+      <app-action-menu [id]="getDomId()">
         <li *ngIf="answer.is_owner">
           <a [routerLink]="['/questions', answer.question_id, answer.question_slug, 'answers', answer.id, 'edit']"><i class="fa fa-pencil"></i> Edit</a>
         </li>
