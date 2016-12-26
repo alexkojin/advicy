@@ -1,7 +1,8 @@
+[![Build Status](https://travis-ci.org/alexkojin/advicy.svg?branch=master)](https://travis-ci.org/alexkojin/advicy)
+
 ## Advicy
 
 Questions & Answers system
-
 
 ### Features
 
