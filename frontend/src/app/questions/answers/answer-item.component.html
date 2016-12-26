@@ -24,13 +24,15 @@
 
   <div class="clearfix">
     <div class="float-right">
-      <app-share-button [text]=""></app-share-button>
       <app-action-menu [id]="answer.id">
         <li *ngIf="answer.is_owner">
           <a [routerLink]="['/questions', answer.question_id, answer.question_slug, 'answers', answer.id, 'edit']"><i class="fa fa-pencil"></i> Edit</a>
         </li>
         <li *ngIf="answer.is_owner">
           <a (click)="onDeleteClick()"><i class="fa fa-trash"></i> Delete</a>
+        </li>
+        <li>
+          <app-share-button [text]=""></app-share-button>
         </li>
         <li>
           <app-flag-button [flaggableType]="'answer'" [flaggable]="answer"></app-flag-button>

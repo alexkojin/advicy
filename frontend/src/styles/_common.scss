@@ -33,6 +33,12 @@ code {
   border: 0px none;
 }
 
+.dropdown-pane {
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 // 100% height .off-canvas
 .off-canvas-wrapper-inner,
 .off-canvas,

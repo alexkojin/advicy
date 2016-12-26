@@ -6,9 +6,10 @@ import { FlagService } from './flag.service';
 @Component({
   selector: 'app-flag-button',
   template: `
-    <a class="flag-button fi-flag" (click)="onClick()" *ngIf="authService.isLoggedIn()"></a>
-   `,
-  styleUrls: ['./flag-button.component.scss']
+    <a class="flag-button" (click)="onClick()" *ngIf="authService.isLoggedIn()">
+      <i class="fi-flag"></i> Report
+    </a>
+   `
 })
 export class FlagButtonComponent implements OnInit{
   @Input() flaggableType: string;
