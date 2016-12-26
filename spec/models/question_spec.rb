@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
   it 'is valid with a title, asker and category' do
-    question = build(:question,
+    question = Question.new(
       title: 'Who are you?',
+      description: 'Bla-bla-blah Bla-Bla-Bla-blah Bla-Bla Blah',
       asker: create(:user),
       category: create(:category))
 
@@ -26,5 +27,11 @@ RSpec.describe Question, type: :model do
     question = build(:question, category: nil)
     question.valid?
     expect(question.errors[:category]).to include("can't be blank")
+  end
+
+  it 'is invalid without description' do
+    question = build(:question, description: '')
+    question.valid?
+    expect(question.errors[:description]).to include("can't be blank")
   end
 end
