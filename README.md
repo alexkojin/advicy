@@ -15,14 +15,15 @@ Questions & Answers system
 
 
 ### TODO
-- notifications
-- real time updates(new questions, new answers, new comments)
-- image uploads
-- user's activity tracking
-- administration dashboard
 
-### Development
+- [ ] apply UI design
+- [ ] notifications
+- [ ] real time updates(new questions, new answers, new comments)
+- [ ] image uploads
+- [ ] user's activity tracking
+- [ ] administration dashboard
 
+### Development Tools
 - Angular 2
 - Rails 5 API 
 - Foundation 6
