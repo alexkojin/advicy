@@ -3,7 +3,10 @@
     <app-comment-item
       *ngFor="let comment of comments"
       [comment]="comment"
-      (onCommentDeleted)="onCommentDeleted($event)">
+      (onCommentDeleted)="onCommentDeleted($event)"
+      (onCommentEdit)="onCommentEdit($event)"
+      >
+
     </app-comment-item>
   </ul>
 
@@ -15,6 +18,6 @@
   </app-comment-form>
 
   <div>
-    <a (click)="toggleForm()" *ngIf="!isFormOpened">+ add a comment</a>
+    <a (click)="toggleForm()" *ngIf="comments.length > 0 && !isFormOpened">+ add a comment</a>
   </div>
 </div>

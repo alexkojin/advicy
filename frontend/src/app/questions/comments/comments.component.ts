@@ -30,6 +30,10 @@ export class CommentsComponent{
       this.authService.openAuthModal();
   }
 
+  onCommentEdit(comment: Comment) {
+    this.isFormOpened = false;
+  }
+
   onCommentSaved(comment: Comment) {
     this.comments.push(comment);
     this.isFormOpened = false;

@@ -11,6 +11,7 @@ import { AuthService } from '../../auth/auth.service';
 export class CommentItemComponent {
   @Input() comment: Comment;
   @Output() onCommentDeleted = new EventEmitter<Comment>();
+  @Output() onCommentEdit = new EventEmitter<Comment>();
 
   editModeEnabled = false;
 
@@ -20,6 +21,11 @@ export class CommentItemComponent {
 
   getDomId() {
     return `comment-${this.comment.id}`;
+  }
+
+  onEdit() {
+    this.editModeEnabled = true;
+    this.onCommentEdit.emit(this.comment);
   }
 
   onCommentSaved(comment: Comment) {

@@ -5,7 +5,7 @@
 
     <app-action-menu [id]="getDomId()" *ngIf="authService.isLoggedIn()">
       <li *ngIf="comment.is_owner">
-        <a (click)="editModeEnabled = true"><i class="fa fa-pencil"></i> Edit</a>
+        <a (click)="onEdit()"><i class="fa fa-pencil"></i> Edit</a>
       </li>
       <li *ngIf="comment.is_owner">
         <a (click)="onDelete(comment)"><i class="fa fa-trash"></i> Delete</a>

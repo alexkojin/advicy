@@ -23,6 +23,7 @@
   <div class="answer-body" [innerHTML]="answer.body_html"></div>
 
   <div class="clearfix">
+    <a (click)="comments.toggleForm()" *ngIf="answer.comments.length == 0">+ add a comment</a>
     <div class="float-right">
       <app-action-menu [id]="getDomId()">
         <li *ngIf="answer.is_owner">
@@ -41,7 +42,7 @@
     </div>
   </div>
 
-  <app-comments [comments]="answer.comments"
+  <app-comments #comments [comments]="answer.comments"
                 [commentableType]="'answer'"
                 [commentableId]="answer.id">
                 </app-comments>
