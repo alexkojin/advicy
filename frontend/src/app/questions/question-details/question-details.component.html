@@ -50,34 +50,38 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="small-12 column">
-        <ul class="actions no-bullet inline-list float-right">
+    <div class="clearfix">
+      <a (click)="comments.toggleForm()" *ngIf="question.comments.length == 0">+ add a comment</a>
+      <div class="float-right">
+        <app-action-menu [id]="getDomId()">
           <li *ngIf="question.is_owner">
             <a [routerLink]="['/questions', question.id, question.slug, 'edit']">Edit</a>
           </li>
           <li *ngIf="question.is_owner">
             <a (click)="onDelete()">Delete</a>
           </li>
-        </ul>
+          <li>
+            <app-share-button [text]=""></app-share-button>
+          </li>
+          <li>
+            <app-flag-button [flaggableType]="'question'" [flaggable]="question"></app-flag-button>
+          </li>
+        </app-action-menu>
       </div>
     </div>
 
-    <!-- COMMENTS -->
-    <div class="row">
-      <app-comments [comments]="question.comments"
+    <app-comments #comments [comments]="question.comments"
                     [commentableType]="'question'"
                     [commentableId]="question.id">
                     </app-comments>
-    </div>
 
   </div>
 
-  <!-- ANSWERS -->
+  <!-- Answers -->
   <app-answers [question]="question" *ngIf="question"></app-answers>
 </div>
 
-<!-- SIDEBAR -->
+<!-- Sidebar -->
 <div class="medium-3 columns">
   <app-related-questions [questionId]="question.id" *ngIf="question"></app-related-questions>
 </div>

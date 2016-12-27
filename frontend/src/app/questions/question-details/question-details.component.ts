@@ -40,6 +40,10 @@ export class QuestionDetailsComponent implements OnInit {
     });
   }
 
+  getDomId() {
+    return `question-${this.question.id}`;
+  }
+
   onDelete() {
     if(confirm('Are you sure want to delete your question?')) {
       this.questionService.deleteQuestion(this.question.id)

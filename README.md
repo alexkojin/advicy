@@ -22,6 +22,8 @@ Questions & Answers system
 - [ ] real time updates(new questions, new answers, new comments)
 - [ ] image uploads
 - [ ] user's activity tracking
+- [ ] the question form: show similars question on a title entering
+- [ ] the question form: autocomplete tags
 - [ ] administration dashboard
 
 ### Development Tools

@@ -39,20 +39,6 @@ export class CommentsComponent{
     this.isFormOpened = false;
   }
 
-  // onSubmit(body: string) {
-  //   var comment = new Comment();
-  //   comment.body = body;
-  //   comment.commentable_id = this.commentableId;
-  //   comment.commentable_type = this.commentableType;
-
-  //   this.commentService.createComment(comment)
-  //     .subscribe(
-  //       comment => {
-  //         this.comments.push(comment);
-  //         this.isFormOpened = false;
-  //       });
-  // }
-
   onCommentDeleted(comment: Comment) {
     var index = this.comments.indexOf(comment);
     this.comments.splice(index, 1);
