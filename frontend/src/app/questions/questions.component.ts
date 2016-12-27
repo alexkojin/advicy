@@ -21,18 +21,15 @@ export class QuestionsComponent implements OnInit {
       this.route.queryParams
     ).subscribe(
       result => {
-        console.log(result[0], result[1]);
         this.setQuestionsFilter(result[0], result[1]);
       }
     );
 
     this.route.params.forEach((params: Params) => {
-      console.log('param', params);
       this.setQuestionsFilter(this.route.snapshot.params, params);
     });
 
     this.route.queryParams.forEach((params: Params) => {
-      console.log('queryParam', params['filter']);
       this.setQuestionsFilter(this.route.snapshot.params, params);
     });
   }

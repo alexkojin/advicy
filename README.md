@@ -6,6 +6,7 @@ Questions & Answers system
 
 ### Features
 
+- Mobile friendly
 - Report/Flag system
 - Vote system
 - Questions/Answers social sharing
