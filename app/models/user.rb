@@ -53,14 +53,6 @@ class User < ActiveRecord::Base
   def question_points_total
     question_points.inject(0) { |total, vote| total += vote.value }
   end
-
-  def award_badges
-    Badge.all.each do |badge|
-      if badge.value <= self.points && !self.badges.include?(badge)
-        self.owned_badges.create(badge_id: badge.id)
-      end
-    end
-  end
 end
 
 # == Schema Information
