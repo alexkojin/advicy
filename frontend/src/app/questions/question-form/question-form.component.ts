@@ -7,10 +7,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { MdEditorComponent } from '../../md-editor/md-editor.component';
 import { QuestionService } from '../question.service';
-import { CategoryService } from '../categories/category.service';
 
 import { Question } from '../question';
-import { Category} from '../categories/category';
 
 @Component({
   selector: 'app-question-form',
@@ -22,13 +20,10 @@ export class QuestionFormComponent implements OnInit {
 
   question: Question;
 
-  categories: Category[] = [];
-
   error: '';
 
   constructor(
     private questionService: QuestionService,
-    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -43,9 +38,6 @@ export class QuestionFormComponent implements OnInit {
         this.question = new Question();
       }
     });
-
-    this.categoryService.getCategories()
-      .subscribe(data => this.categories = data);
   }
 
   getSaveService(form: NgForm): Observable<any> {

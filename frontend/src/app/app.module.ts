@@ -17,7 +17,6 @@ import { ActiveOnSignOutGuard } from './auth/active-on-sign-out.guard';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './users/user.service';
 import { QuestionService} from './questions/question.service';
-import { CategoryService } from './questions/categories/category.service';
 import { AnswerService } from './questions/answers/answer.service';
 import { VoteService } from './questions/vote-control/vote.service';
 import { ShareService } from './shared/share-modal/share.service';
@@ -33,11 +32,9 @@ import { QuestionDetailsComponent } from './questions/question-details/question-
 import { JobsComponent } from './jobs/jobs.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
-import { CategoriesComponent } from './questions/categories/categories.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { TopCategoriesComponent } from './questions/categories/top-categories.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { RelatedQuestionsComponent } from './questions/related-questions/related-questions.component';
 import { AnswersComponent } from './questions/answers/answers.component';
@@ -82,11 +79,9 @@ export const authProvider = {
     JobsComponent,
     TagsComponent,
     UsersComponent,
-    CategoriesComponent,
     UserDetailsComponent,
     SigninComponent,
     SignupComponent,
-    TopCategoriesComponent,
     QuestionFormComponent,
     RelatedQuestionsComponent,
     AnswersComponent,
@@ -119,7 +114,6 @@ export const authProvider = {
     ActiveOnSignOutGuard,
     AuthService,
     UserService,
-    CategoryService,
     QuestionService,
     AnswerService,
     VoteService,

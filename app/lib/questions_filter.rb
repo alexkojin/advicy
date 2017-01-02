@@ -7,13 +7,11 @@ class QuestionsFilter
   end
 
   def call
-    scope = Question.includes(:votes, :asker, :tags, :category)
+    scope = Question.includes(:votes, :asker, :tags)
     scope = if params[:tag]
       scope.tagged_with(params[:tag])
     elsif params[:owner]
       scope.where('asker_id = ?', params[:owner])
-    elsif params[:category]
-      scope.where(categories: { slug: params[:category] })
     elsif params[:query]
       scope.where('LOWER(title) LIKE (?)', "%#{params[:query].downcase}%")
     else

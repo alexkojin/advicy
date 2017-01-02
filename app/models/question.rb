@@ -1,4 +1,4 @@
-class Question < ActiveRecord::Base
+class Question < ApplicationRecord
   paginates_per 10
   acts_as_taggable
 
@@ -10,9 +10,7 @@ class Question < ActiveRecord::Base
                      foreign_key: :question_id,
                      dependent: :destroy
 
-  belongs_to :category
-
-  validates :title, :asker, :description, :category, presence: true
+  validates :title, :asker, :description, presence: true
 
   scope :unanswered, -> { where('questions.answers_count = 0') }
   # currently it's simplified and retrieve most viewed questions
@@ -28,14 +26,6 @@ class Question < ActiveRecord::Base
 
   def owner?(user)
     user.present? && asker_id == user.id
-  end
-
-  def category_slug
-    self.category && self.category.slug
-  end
-
-  def category_slug=(value)
-    self.category = value.blank? ? nil : Category.find_by(slug: value)
   end
 end
 

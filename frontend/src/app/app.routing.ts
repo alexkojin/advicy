@@ -7,7 +7,6 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { QuestionDetailsComponent } from './questions/question-details/question-details.component';
 import { AnswerEditComponent } from './questions/answers/answer-edit/answer-edit.component';
-import { CategoriesComponent } from './questions/categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
@@ -26,12 +25,10 @@ const APP_ROUTES: Routes = [
   { path: 'users/:id/:slug', component: UserDetailsComponent },
   { path: 'users', component: UsersComponent },
   { path: 'tags', component: TagsComponent },
-  { path: 'categories', component: CategoriesComponent },
 
   { path: 'questions/new', component: QuestionFormComponent, canActivate: [AuthGuard] },
   { path: 'questions/search/:query', component: QuestionsComponent },
   { path: 'questions/tag/:tag', component: QuestionsComponent },
-  { path: 'questions/category/:category', component: QuestionsComponent },
   { path: 'questions/:id/:slug', component: QuestionDetailsComponent },
   { path: 'questions/:id/:slug/edit', component: QuestionFormComponent, canActivate: [AuthGuard] },
   { path: 'questions/:quesiton_id/:question_slug/:answers/:id/edit', component: AnswerEditComponent, canActivate: [AuthGuard] },

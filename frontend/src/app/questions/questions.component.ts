@@ -38,9 +38,6 @@ export class QuestionsComponent implements OnInit {
     if(params['tag']) {
       this.questionsFilter = new QuestionsFilter('tag', params['tag'], queryParams['filter']);
     }
-    else if(params['category']) {
-      this.questionsFilter = new QuestionsFilter('category', params['category'], queryParams['filter']);
-    }
     else if(params['query']) {
       this.questionsFilter = new QuestionsFilter('query', params['query'], queryParams['filter']);
     }

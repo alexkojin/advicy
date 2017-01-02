@@ -14,7 +14,6 @@ module Api::V1
         :votes,
         :answers,
         :comments,
-        :category,
         answers: [:comments, :votes])
           .merge(Comment.order(created_at: :asc))
           .order('answers.created_at')
@@ -57,7 +56,7 @@ module Api::V1
     private
 
     def question_params
-      params.require(:question).permit(:title, :description, :description_html, :tag_list, :category_slug)
+      params.require(:question).permit(:title, :description, :description_html, :tag_list)
     end
   end
 end

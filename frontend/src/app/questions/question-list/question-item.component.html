@@ -29,8 +29,6 @@
       </ul>
 
       <div class="small-3 column">
-        <a routerLink="/questions/category/{{question.category.slug}}">{{question.category.name}}</a>
-
         <span>
           {{question.created_at}} <a [routerLink]="['/users', question.user.id, question.user.slug]">{{question.user.username}}</a>
         </span>

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
       resources :tags, only: [:index]
       resources :views, only: [:create]
       resources :flags, only: [:create]
-      resources :categories, only: [:index]
       resources :users, only: [:index, :show, :create]
 
       post '/authenticate' => 'auth#authenticate'

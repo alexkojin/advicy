@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226081009) do
+ActiveRecord::Schema.define(version: 20170102130124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20161226081009) do
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "description"
+    t.string   "media_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_attachments_on_question_id", using: :btree
+  end
+
   create_table "badges", force: :cascade do |t|
     t.integer  "value",       null: false
     t.string   "title",       null: false
@@ -50,15 +59,6 @@ ActiveRecord::Schema.define(version: 20161226081009) do
     t.string   "image_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "slug",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
-    t.index ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -110,6 +110,32 @@ ActiveRecord::Schema.define(version: 20161226081009) do
     t.index ["job_id", "kind"], name: "index_educations_on_job_id_and_kind", unique: true, using: :btree
   end
 
+  create_table "feed_questions", force: :cascade do |t|
+    t.integer  "feed_site_id"
+    t.string   "entry_id"
+    t.integer  "question_id"
+    t.string   "title",                        null: false
+    t.text     "summary",                      null: false
+    t.string   "tags",            default: [],              array: true
+    t.integer  "rank",            default: 0
+    t.string   "url",                          null: false
+    t.datetime "published_at"
+    t.datetime "last_updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["feed_site_id", "entry_id"], name: "index_feed_questions_on_feed_site_id_and_entry_id", unique: true, using: :btree
+    t.index ["feed_site_id"], name: "index_feed_questions_on_feed_site_id", using: :btree
+  end
+
+  create_table "feed_sites", force: :cascade do |t|
+    t.integer  "site_id"
+    t.string   "title",      null: false
+    t.string   "feed_url",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_url"], name: "index_feed_sites_on_feed_url", using: :btree
+  end
+
   create_table "flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "flaggable_id"
@@ -146,7 +172,6 @@ ActiveRecord::Schema.define(version: 20161226081009) do
     t.integer  "views_count",      default: 0, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.integer  "category_id",                  null: false
     t.integer  "score",            default: 0, null: false
     t.text     "description_html"
     t.integer  "answers_count",    default: 0, null: false

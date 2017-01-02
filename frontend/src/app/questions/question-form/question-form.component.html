@@ -24,17 +24,6 @@
       </label>
 
       <label>
-        Category
-        <select name="category_slug" [(ngModel)]="question.category_slug" required>
-          <option disabled>Select a Category</option>
-          <option *ngFor="let category of categories" value="{{category.slug}}">{{category.name}}</option>
-        </select>
-      </label>
-      <div [class.is-visible]="!(title.valid || title.pristine)" class="form-error">
-        Category can't be blank
-      </div>
-
-      <label>
         Tags
         <input type="text" name="tag_list" [(ngModel)]="question.tag_list"/>
       </label>

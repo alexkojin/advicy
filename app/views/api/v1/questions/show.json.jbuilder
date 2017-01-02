@@ -10,11 +10,6 @@ json.answers_count @question.answers_count
 json.created_at time_ago_in_words(@question.created_at)
 json.tags @question.tags
 
-json.category do
-  json.name @question.category.try(:name)
-  json.slug @question.category.try(:slug)
-end
-
 json.user do
   json.extract! @question.asker, :id, :username, :slug
   json.image_url @question.asker.image_url(:thumb)
