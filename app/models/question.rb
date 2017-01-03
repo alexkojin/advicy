@@ -3,18 +3,16 @@ class Question < ApplicationRecord
   acts_as_taggable
 
   belongs_to :asker, class_name: 'User', foreign_key: :asker_id
+  has_many :answers, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
   has_many :views, as: :viewable, dependent: :delete_all
-  has_many :answers, class_name: 'Answer',
-                     foreign_key: :question_id,
-                     dependent: :destroy
 
   validates :title, :asker, :description, presence: true
 
   scope :unanswered, -> { where('questions.answers_count = 0') }
   # currently it's simplified and retrieve most viewed questions
-  # more about calculation popular here:
+  # more about how to calculate a popular here:
   #  http://meta.stackexchange.com/questions/11602/what-formula-should-be-used-to-determine-hot-questions
   scope :popular, -> { order('questions.views_count DESC, questions.created_at DESC') }
   scope :last_week, -> { where('questions.created_at > ?', 7.days.ago) }
