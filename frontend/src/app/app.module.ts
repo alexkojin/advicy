@@ -54,6 +54,7 @@ import { EditPasswordComponent } from './auth/edit-password/edit-password.compon
 import { CommentItemComponent } from './questions/comments/comment-item.component';
 import { CommentFormComponent } from './questions/comments/comment-form.component';
 import { ActionMenuComponent } from './shared/action-menu/action-menu.component';
+import { UploadModalComponent } from './shared/upload-modal/upload-modal.component';
 
 export function authFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -100,7 +101,8 @@ export const authProvider = {
     EditPasswordComponent,
     CommentItemComponent,
     CommentFormComponent,
-    ActionMenuComponent
+    ActionMenuComponent,
+    UploadModalComponent
   ],
   imports: [
     BrowserModule,

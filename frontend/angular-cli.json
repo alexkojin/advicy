@@ -18,9 +18,11 @@
       "mobile": false,
       "styles": [
         "../node_modules/simplemde/dist/simplemde.min.css",
+        "../node_modules/dropzone/dist/dropzone.css",
         "styles/main.scss"
       ],
       "scripts": [
+        "../node_modules/dropzone/dist/dropzone.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

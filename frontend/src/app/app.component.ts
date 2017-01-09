@@ -15,5 +15,8 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     jQuery(document).foundation();
+
+    // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
+    Dropzone.autoDiscover = false;
   }
 }

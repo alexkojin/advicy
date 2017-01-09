@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, AuthHttp } from 'angular2-jwt';
 
 import { environment } from '../../environments/environment';
 
@@ -16,7 +16,7 @@ export class AuthService extends ApiService {
 
   public authModal = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private http: Http) {
+  constructor(private router: Router, private http: Http, private authHttp: AuthHttp) {
     super();
   }
 
@@ -67,6 +67,10 @@ export class AuthService extends ApiService {
     return JSON.parse(localStorage.getItem('profile'));
   }
 
+  getAuthHeader() {
+    // TODO: get an authorization header from angular2-jwt config
+    return { 'Authorization' : 'Bearer ' + localStorage.getItem('id_token') };
+  }
 
   navigateToSignIn() {
     this.setRedirectUrl(this.router.url);
@@ -90,7 +94,6 @@ export class AuthService extends ApiService {
     if(!this.regexpSkipPathsToRedirectBack.test(url)) {
       localStorage.setItem('redirectUrl', url);
     }
-
   }
 
   redirectToBackOrDefault(defaultUrl = '') {
