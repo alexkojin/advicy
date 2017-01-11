@@ -28,21 +28,24 @@ export class MdEditorComponent {
   ngAfterViewInit(){
     this.editor = new SimpleMDE({
       element: this.elementRef.nativeElement.value,
-      showIcons: ["code"],
       spellChecker: false,
       renderingConfig: {
         codeSyntaxHighlighting: true
-      }// },
-      // toolbar: [
-      //   "bold", "italic", "strikethrough", "heading", "|", "code", "quote", "unordered-list", "ordered-list",
-      //   {
-      //     name: "image",
-      //     action: this.showUploadImageModal.bind(this),
-      //     className: "fa fa-picture-o",
-      //     title: "Insert Image",
-      //     default: true
-      //   },
-      // ]
+      },
+      toolbar: [
+        "bold", "italic", "strikethrough", "heading",
+        "|", "code", "quote", "unordered-list", "ordered-list",
+        "|", "link",
+        {
+          name: "image",
+          action: this.showUploadImageModal.bind(this),
+          className: "fa fa-picture-o",
+          title: "Insert Image",
+          default: true
+        },
+        "|", "preview", "side-by-side", "fullscreen",
+        "|", "guide"
+      ]
     });
 
     window.e = this.editor;

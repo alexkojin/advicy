@@ -35,11 +35,10 @@ end
 #  asker_id         :integer          not null, indexed
 #  title            :string           not null, indexed
 #  description      :text
-#  views_count      :integer          default(0), not null
+#  views_count      :integer          default("0"), not null
 #  created_at       :datetime         not null, indexed => [answers_count]
 #  updated_at       :datetime         not null
-#  category_id      :integer          not null
-#  score            :integer          default(0), not null
+#  score            :integer          default("0"), not null
 #  description_html :text
-#  answers_count    :integer          default(0), not null, indexed => [created_at]
+#  answers_count    :integer          default("0"), not null, indexed => [created_at]
 #

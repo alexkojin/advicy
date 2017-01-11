@@ -15,6 +15,7 @@ gem 'figaro'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
 
 # authentication
 gem 'devise'
@@ -50,6 +51,8 @@ group :development do
   gem 'mina-systemd', require: false
 
   gem 'letter_opener'
+
+  gem 'annotate'
 end
 
 group :test do

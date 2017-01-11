@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102130124) do
+ActiveRecord::Schema.define(version: 20170111074303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(version: 20170102130124) do
     t.index ["job_id", "kind"], name: "index_educations_on_job_id_and_kind", unique: true, using: :btree
   end
 
+  create_table "feed_answers", force: :cascade do |t|
+    t.integer  "feed_question_id"
+    t.integer  "answer_id"
+    t.string   "entry_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["feed_question_id", "entry_id"], name: "index_feed_answers_on_feed_question_id_and_entry_id", unique: true, using: :btree
+    t.index ["feed_question_id"], name: "index_feed_answers_on_feed_question_id", using: :btree
+  end
+
   create_table "feed_questions", force: :cascade do |t|
     t.integer  "feed_site_id"
     t.string   "entry_id"
@@ -136,6 +146,17 @@ ActiveRecord::Schema.define(version: 20170102130124) do
     t.index ["feed_url"], name: "index_feed_sites_on_feed_url", using: :btree
   end
 
+  create_table "feed_users", force: :cascade do |t|
+    t.integer  "feed_site_id"
+    t.integer  "user_id"
+    t.string   "name",         null: false
+    t.string   "email",        null: false
+    t.string   "url",          null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["feed_site_id", "url"], name: "index_feed_users_on_feed_site_id_and_url", unique: true, using: :btree
+  end
+
   create_table "flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "flaggable_id"
@@ -146,6 +167,14 @@ ActiveRecord::Schema.define(version: 20170102130124) do
     t.datetime "updated_at",     null: false
     t.index ["flaggable_id", "flaggable_type"], name: "index_flags_on_flaggable_id_and_flaggable_type", using: :btree
     t.index ["user_id", "flaggable_id", "flaggable_type"], name: "index_flags_on_user_id_and_flaggable_id_and_flaggable_type", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "token",      limit: 32, null: false
+    t.string   "image"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["token"], name: "index_images_on_token", unique: true, using: :btree
   end
 
   create_table "old_users", force: :cascade do |t|
@@ -241,4 +270,5 @@ ActiveRecord::Schema.define(version: 20170102130124) do
     t.index ["voter_id"], name: "index_votes_on_voter_id", using: :btree
   end
 
+  add_foreign_key "feed_answers", "feed_questions"
 end

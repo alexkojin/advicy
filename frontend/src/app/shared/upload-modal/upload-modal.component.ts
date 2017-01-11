@@ -36,6 +36,7 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
       },
       success: (file, response) => {
         this.onSuccessUpload.emit(response['url']);
+        this.dropzone.removeFile(file);
       }
     });
   }

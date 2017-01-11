@@ -10,6 +10,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  def filename
+     "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  protected
+  def secure_token
+    @secure_token ||= model.generate_token
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   # def store_dir

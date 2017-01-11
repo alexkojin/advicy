@@ -3,15 +3,12 @@ module Api::V1
     before_action :require_login
 
     def create
-      uploader = ImageUploader.new
-      uploader.store!(params[:file])
-      # if @comment.save
-      #   render :create
-      # else
-      #   render json: @comment.errors.full_messages, status: :unprocessable_entity
-      # end
-
-      render json: { url: uploader.url }
+      image = Image.new(image: params[:file])
+      if image.save
+        render json: { url: image.image.url }
+      else
+        render json: image.errors.full_messages, status: :unprocessable_entity
+      end
     end
 
   end
