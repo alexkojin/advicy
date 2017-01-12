@@ -2,7 +2,6 @@ class Image < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def generate_token
-    Rails.logger.info "gen token #{self.token}"
     self.token = SecureRandom.hex(rand(4..8))
     generate_token if self.class.exists?(token: self.token)
     self.token

@@ -1,0 +1,20 @@
+APP_URL:
+
+SECRET_KEY_BASE:
+
+# Authentication with Facebook and Google
+FACEBOOK_APP_ID:
+FACEBOOK_APP_SECRET:
+GOOGLE_CLIENT_ID:
+GOOGLE_CLIENT_SECRET:
+
+# Configure S3 upload storage
+AWS_ACCESS_KEY_ID:
+AWS_SECRET_ACCESS_KEY:
+AWS_S3_REGION:
+AWS_S3_BUCKET_NAME:
+
+SPARKPOST_API_KEY:
+
+# Error notification with Errbit
+ERRBIT_PROJECT_KEY:

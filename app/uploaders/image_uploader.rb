@@ -3,8 +3,8 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   def extension_white_list
     %w(jpg jpeg gif png)
@@ -12,6 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def filename
      "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  def store_dir
+    'i'
   end
 
   protected

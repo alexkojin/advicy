@@ -26,8 +26,14 @@ Questions & Answers system
 - [ ] the question form: autocomplete tags
 - [ ] administration dashboard
 
-### Development Tools
+### Technology stack
 - Angular 2
 - Rails 5 API 
 - Foundation 6
 - PostgreSQL
+
+### Installation
+
+- ImageMagick
+- PostgreSQL
+- Rails 5

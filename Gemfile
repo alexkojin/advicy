@@ -21,7 +21,7 @@ gem 'fog'
 gem 'devise'
 gem 'jwt'
 gem 'omniauth-facebook'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
 
 # error notification
 gem 'airbrake', '~> 5.0'
