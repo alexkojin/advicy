@@ -13,7 +13,7 @@ gem 'kaminari'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'figaro'
 
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
 

@@ -12,7 +12,7 @@ CarrierWave.configure do |config|
   config.fog_use_ssl_for_aws = false
 
   # For testing, upload files to local `tmp` folder.
-  if Rails.env.test? || Rails.env.cucumber?
+  if Rails.env.test? ||  Rails.env.cucumber?
     config.storage = :file
     config.enable_processing = false
     config.root = "#{Rails.root}/tmp"
@@ -20,3 +20,5 @@ CarrierWave.configure do |config|
     config.storage = :fog
   end
 end
+
+

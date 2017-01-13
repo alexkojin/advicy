@@ -21,6 +21,7 @@ Questions & Answers system
 - [ ] notifications
 - [ ] real time updates(new questions, new answers, new comments)
 - [ ] image uploads
+- [ ] optimize images before upload
 - [ ] user's activity tracking
 - [ ] the question form: show similars question on a title entering
 - [ ] the question form: autocomplete tags

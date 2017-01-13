@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :image do
-    token "MyString"
-    image "MyString"
+    token { SecureRandom.hex(10) }
+    image { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/support/images/image.jpg'))) }
   end
 end

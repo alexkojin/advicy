@@ -1,6 +1,10 @@
 class Image < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  validates :image, presence: true
+  validates_integrity_of :image
+  validates_processing_of :image
+
   def generate_token
     self.token = SecureRandom.hex(rand(4..8))
     generate_token if self.class.exists?(token: self.token)

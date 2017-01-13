@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Getting Started with Angular and Rails</title>
+		<style>
+			/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+sup {
+   vertical-align: super;
+   font-size: smaller;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+/* Generic styles */
+body {
+	background: #f5f5f5;
+  color: #222;
+  font-family: 'Palatino Linotype','Book Antiqua',Palatino,FreeSerif,serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+ul, ol,
+p,
+code, pre,
+hr {
+	line-height: 1.5em;
+	margin: 1.5em 0 0.5em 0;
+}
+
+*:first-child {
+	margin-top: 0;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 3.5em;
+}
+
+h2 {
+	font-size: 2.5em;
+}
+
+h3 {
+	font-size: 2em;
+}
+
+h4 {
+	font-size: 1.5em
+}
+
+h5 {
+	font-size: 1.2em;
+}
+
+h6 {
+	font-size: 1em;
+}
+
+/* Lists */
+ul, ol {
+	padding-left: 2em;
+}
+
+ul {
+	list-style-type: disc;	
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+/* Code and pre */
+code, pre {
+	font-family: "Bitstream Vera Sans Mono", "Courier", monospace;
+}
+code {
+	background: none repeat scroll 0 0 #F8F8FF;
+  border: 1px solid #DEDEDE;
+  border-radius: 3px 	;
+  padding: 0 0.2em;
+}
+pre {
+	border-left: 5px solid #eee;
+	margin-left: 2em;	
+	padding-left: 1em;
+}
+pre > code {
+	background: transparent;
+	border: none;
+	padding: 0;
+}
+
+/* Links */
+a {
+  color: #261A3B;
+}
+
+a:visited {
+  color: #261A3B;
+}
+
+/* Inlines */
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+/* Container */
+.container {
+	background: #FFF;
+	padding: 30px 50px;
+	margin: 0 auto;
+	width: 850px;
+}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1 id="getting-started-with-angular-and-rails">Getting Started with Angular and Rails</h1>
+<p>Whenever I teach myself a new technology, I like to teach myself by building a real program using that technology. And when I build that program, I usually do it in to steps:</p>
+<ol>
+<li>Build a &quot;spike&quot; where I don&#39;t worry about testing or even good code too much</li>
+<li>Start over and do it again, more carefully this time</li>
+</ol>
+<p>This guide will cover that first step, the spike. That should be enough to get you started. If you want more help after that, I&#39;ll tell you where you can find it when we&#39;re done.</p>
+<p>For this particular application we&#39;re going to take three steps:</p>
+<ol>
+<li>Create a Rails app</li>
+<li>Create an Angular app</li>
+<li>Get the two to talk to each other</li>
+</ol>
+<h2 id="creating-the-rails-app">Creating the Rails app</h2>
+<p>First, make sure you have Rails 5 installed.</p>
+<pre><code>$ rails new home_library --api -T -d postgresql
+$ cd home_library
+</code></pre><p>Quick rundown of the flags:</p>
+<ul>
+<li><code>--api</code>: We want to create an <em>API-only</em> app. This, as you may know, is a new feature of Rails 5.</li>
+<li><code>-T</code>: We don&#39;t want to use Test::Unit. (We&#39;ll use RSpec.)</li>
+<li><code>-d postgresql</code>: We want to use PostgreSQL.</li>
+</ul>
+<p>After that command finishes running, create the database and start the server.</p>
+<pre><code>$ rails db:create
+$ rails server --binding 0.0.0.0
+</code></pre><p>Don&#39;t forget to initialize your Git repo before moving on.</p>
+<pre><code>$ git init
+$ git add .
+$ git commit -m &quot;Initial commit.&quot;
+</code></pre><h2 id="creating-the-angular-app">Creating the Angular app</h2>
+<p>We&#39;re going to use <a href="https://github.com/angular/angular-cli">Angular CLI</a> to create our Angular app. It can be installed using the following command. If you don&#39;t have NPM installed on your machine, you&#39;ll need to install it.</p>
+<pre><code>$ npm install -g angular-cli
+</code></pre><p>The Angular CLI executable is called <code>ng</code>. Run <code>ng -v</code> to verify that Angular CLI has been installed.</p>
+<pre><code>$ ng -v
+</code></pre><p>As of this writing the latest version of Angular CLI is <code>1.0.0-beta.16</code>.</p>
+<p>We&#39;ll now create a new Angular app with the same name as the Rails app.</p>
+<pre><code>$ ng new home-library
+</code></pre><p>What we have right now is a slightly silly situation. Our Rails application lives at <code>/home_library</code>. The Angular application lives at the repetitively-named <code>/home_library/home-library</code>. When I have an Angular application nested within a Rails application, I always call its directory <code>client</code>, which is a name I&#39;ve just arbitrarily chosen because I think it makes sense. Let&#39;s rename our Angular directory now, and then <code>cd</code> into it.</p>
+<pre><code>$ mv home-library client
+$ cd client
+</code></pre><p>Lastly, run <code>npm start</code> to spin up the front-end server.</p>
+<pre><code>$ npm start
+</code></pre><p>If you go now to <code>http://localhost:4200/</code>, you should see a page that says &quot;app works!&quot;.</p>
+<h2 id="getting-angular-and-rails-to-talk-to-each-other">Getting Angular and Rails to talk to each other</h2>
+<h3 id="step-1-add-a-resource-to-rails">Step 1: Add a resource to Rails</h3>
+<p>Let&#39;s <code>cd</code> back into the Rails directory:</p>
+<pre><code>$ cd ..
+</code></pre><p>Now we&#39;ll generate our resource and run the migrations so our database table gets created.</p>
+<pre><code>$ rails generate scaffold book name:string
+$ rails db:migrate
+</code></pre><p>When I&#39;m building single-page applications, I like to namespace my routes under <code>/api</code>. (Sometimes you&#39;ll want <code>/api/v1</code>, <code>/api/v2</code>, etc., but in this case we&#39;ll just do <code>/api</code>.)</p>
+<pre><code class="lang-ruby"># config/routes.rb
+
+Rails.application.routes.draw do
+  scope &#39;/api&#39; do
+    resources :books
+  end
+end
+</code></pre>
+<p>Then, so we have some actual data to work with, let&#39;s add some seed data.</p>
+<pre><code class="lang-ruby"># db/seeds.rb
+
+Book.create!([
+  { name: &#39;Copying and Pasting from Stack Overflow&#39; },
+  { name: &#39;Trying Stuff Until it Works&#39; }
+])
+</code></pre>
+<p>Run <code>rails db:seed</code> to insert that data into the database.</p>
+<pre><code>$ rails db:seed
+</code></pre><p>Now, if you visit <code>http://localhost:3000/api/books.json</code>, you should see the following:</p>
+<pre><code class="lang-json">[{
+  &quot;id&quot;: 1,
+  &quot;name&quot;: &quot;Copying and Pasting from Stack Overflow&quot;,
+  &quot;created_at&quot;: &quot;2016-09-29T12:31:26.989Z&quot;,
+  &quot;updated_at&quot;: &quot;2016-09-29T12:31:26.989Z&quot;
+}, {
+  &quot;id&quot;: 2,
+  &quot;name&quot;: &quot;Trying Stuff Until it Works&quot;,
+  &quot;created_at&quot;: &quot;2016-09-29T12:31:26.998Z&quot;,
+  &quot;updated_at&quot;: &quot;2016-09-29T12:31:26.998Z&quot;
+}]
+</code></pre>
+<p>We&#39;ll need to do just one more thing before we&#39;re good to go on the Rails side.</p>
+<p>If we don&#39;t set up CORS configuration (cross-origin resource sharing), Rails will complain when we try to hit <code>localhost:3000</code> from <code>localhost:4200</code>. First, uncomment <code>gem &#39;rack-cors&#39;</code> in your <code>Gemfile</code>:</p>
+<pre><code class="lang-ruby"># Gemfile
+
+source &#39;https://rubygems.org&#39;
+
+
+# Bundle edge Rails instead: gem &#39;rails&#39;, github: &#39;rails/rails&#39;
+gem &#39;rails&#39;, &#39;~&gt; 5.0.0&#39;, &#39;&gt;= 5.0.0.1&#39;
+# Use postgresql as the database for Active Record
+gem &#39;pg&#39;, &#39;~&gt; 0.18&#39;
+# Use Puma as the app server
+gem &#39;puma&#39;, &#39;~&gt; 3.0&#39;
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem &#39;jbuilder&#39;, &#39;~&gt; 2.5&#39;
+# Use Redis adapter to run Action Cable in production
+# gem &#39;redis&#39;, &#39;~&gt; 3.0&#39;
+# Use ActiveModel has_secure_password
+# gem &#39;bcrypt&#39;, &#39;~&gt; 3.1.7&#39;
+
+# Use Capistrano for deployment
+# gem &#39;capistrano-rails&#39;, group: :development
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem &#39;rack-cors&#39;
+
+group :development, :test do
+  # Call &#39;byebug&#39; anywhere in the code to stop execution and get a debugger console
+  gem &#39;byebug&#39;, platform: :mri
+end
+
+group :development do
+  gem &#39;listen&#39;, &#39;~&gt; 3.0.5&#39;
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem &#39;spring&#39;
+  gem &#39;spring-watcher-listen&#39;, &#39;~&gt; 2.0.0&#39;
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem &#39;tzinfo-data&#39;, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+</code></pre>
+<p>And then of course <code>bundle install</code>.</p>
+<pre><code>$ bundle install
+</code></pre><p>Then change <code>config/initializers/cors.rb</code> to look like this:</p>
+<pre><code class="lang-ruby"># config/initializers/cors.rb
+
+# Be sure to restart your server when you modify this file.
+
+# Avoid CORS issues when API is called from the frontend app.
+# Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
+
+# Read more: https://github.com/cyu/rack-cors
+
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins &#39;*&#39;
+
+    resource &#39;*&#39;,
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
+</code></pre>
+<p>Don&#39;t forget to restart your Rails server.</p>
+<h3 id="step-2-add-an-http-request-to-angular">Step 2: Add an HTTP request to Angular</h3>
+<p>The first thing we&#39;ll do is generate an Angular <em>component</em> that will show us a list of books.</p>
+<pre><code>$ ng generate component book-list
+</code></pre><p>In order to get that component to show up on the home page, edit <code>src/app/app.component.html</code> to look like this:</p>
+<pre><code class="lang-html">&lt;!-- src/app/app.component.html --&gt;
+
+&lt;h1&gt;
+  {{title}}
+&lt;/h1&gt;
+
+&lt;app-book-list&gt;&lt;/app-book-list&gt;
+</code></pre>
+<p>If you now visit <code>http://localhost:4200</code>, you should see not only &quot;app works!&quot; like before but also &quot;book-list works!&quot;</p>
+<p>Now let&#39;s an a HTTP request to <code>BookListComponent</code>. Let&#39;s not worry about showing the HTTP response on the page yet. Let&#39;s just <code>console.log</code> the response and see if that much works before we do anything more sophisticated.</p>
+<pre><code class="lang-typescript">// src/app/book-list/book-list.component.ts
+
+import { Component, OnInit } from &#39;@angular/core&#39;;
+import { Http } from &#39;@angular/http&#39;;
+
+@Component({
+  selector: &#39;app-book-list&#39;,
+  templateUrl: &#39;./book-list.component.html&#39;,
+  styleUrls: [&#39;./book-list.component.css&#39;]
+})
+export class BookListComponent implements OnInit {
+
+  constructor(private http: Http) { }
+
+  ngOnInit() {
+    this.http.get(&#39;/api/books.json&#39;)
+      .subscribe(response =&gt; console.log(response));
+  }
+
+}
+</code></pre>
+<h3 id="fixing-the-proxy-issue">Fixing the proxy issue</h3>
+<p>If you refresh the page now, you&#39;ll see an error:</p>
+<p><code>GET http://localhost:4200/api/books.json 404 (Not Found)</code></p>
+<p>This makes sense since Angular currently doesn&#39;t have any way to know about our Rails server on port 3000.</p>
+<p>We can get Angular to send all XHR requests to port 3000 by configuring a proxy. More precisely, we&#39;ll send all XHR requests to port 3000 whose URIs start with <code>/api</code>.</p>
+<p>First let&#39;s create a file called <code>proxy.conf.json</code> at the Angular project root:</p>
+<pre><code class="lang-json">{
+  &quot;/api&quot;: {
+    &quot;target&quot;: &quot;http://localhost:3000&quot;,
+    &quot;secure&quot;: &quot;false&quot;
+  }
+}
+</code></pre>
+<p>Now we want to change the <code>ng serve</code> in <code>package.json</code> to <code>ng serve --proxy-config proxy.conf.json</code>.</p>
+<p>Here&#39;s my full <code>package.json</code> for reference:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;home-library&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;angular-cli&quot;: {},
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,
+    &quot;lint&quot;: &quot;tslint \&quot;src/**/*.ts\&quot;&quot;,
+    &quot;test&quot;: &quot;ng test&quot;,
+    &quot;pree2e&quot;: &quot;webdriver-manager update&quot;,
+    &quot;e2e&quot;: &quot;protractor&quot;
+  },
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;@angular/common&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/compiler&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/core&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/forms&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/http&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/platform-browser&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/platform-browser-dynamic&quot;: &quot;2.0.0&quot;,
+    &quot;@angular/router&quot;: &quot;3.0.0&quot;,
+    &quot;core-js&quot;: &quot;^2.4.1&quot;,
+    &quot;rxjs&quot;: &quot;5.0.0-beta.12&quot;,
+    &quot;ts-helpers&quot;: &quot;^1.1.1&quot;,
+    &quot;zone.js&quot;: &quot;^0.6.23&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@types/jasmine&quot;: &quot;^2.2.30&quot;,
+    &quot;angular-cli&quot;: &quot;1.0.0-beta.16&quot;,
+    &quot;codelyzer&quot;: &quot;~0.0.26&quot;,
+    &quot;jasmine-core&quot;: &quot;2.4.1&quot;,
+    &quot;jasmine-spec-reporter&quot;: &quot;2.5.0&quot;,
+    &quot;karma&quot;: &quot;1.2.0&quot;,
+    &quot;karma-chrome-launcher&quot;: &quot;^2.0.0&quot;,
+    &quot;karma-cli&quot;: &quot;^1.0.1&quot;,
+    &quot;karma-jasmine&quot;: &quot;^1.0.2&quot;,
+    &quot;karma-remap-istanbul&quot;: &quot;^0.2.1&quot;,
+    &quot;protractor&quot;: &quot;4.0.9&quot;,
+    &quot;ts-node&quot;: &quot;1.2.1&quot;,
+    &quot;tslint&quot;: &quot;3.13.0&quot;,
+    &quot;typescript&quot;: &quot;2.0.2&quot;
+  }
+}
+</code></pre>
+<p>Kill the process you previously started up using <code>npm start</code> and run <code>npm start</code> again.</p>
+<pre><code>$ npm start
+</code></pre><p>If you refresh the page, you should see our two books in the console. Now let&#39;s go a step further. We&#39;ll create a <code>books</code> property on <code>BookListComponent</code>. When we get the response back from the server, we&#39;ll assign <code>this.books</code> to the array we got back.</p>
+<pre><code class="lang-typescript">// src/app/book-list/book-list.component.ts
+
+import { Component, OnInit } from &#39;@angular/core&#39;;
+import { Http } from &#39;@angular/http&#39;;
+
+@Component({
+  selector: &#39;app-book-list&#39;,
+  templateUrl: &#39;./book-list.component.html&#39;,
+  styleUrls: [&#39;./book-list.component.css&#39;]
+})
+export class BookListComponent implements OnInit {
+  books: any;
+
+  constructor(private http: Http) { }
+
+  ngOnInit() {
+    this.http.get(&#39;/api/books.json&#39;)
+      .subscribe(response =&gt; this.books = response.json());
+  }
+
+}
+</code></pre>
+<p>If you were to refresh the page now, you&#39;d see no indication of whether what you just did worked or didn&#39;t work. Let&#39;s add something to the template to let us see <code>books</code> on the page.</p>
+<pre><code class="lang-html">&lt;!-- src/app/book-list/book-list.component.html --&gt;
+
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let book of books&quot;&gt;{{ book.name }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>Now, if you refresh the page, you should see our two books listed on the page.</p>
+<h2 id="what-s-next-">What&#39;s next?</h2>
+<p>There are some issues with our &quot;spike&quot; application:</p>
+<p>There are no meaningful tests on the Rails or Angular side.</p>
+<p>We haven&#39;t deployed to any sort of production environment.</p>
+<p>We&#39;re showing a list of books, but we don&#39;t have a way through the UI to create a new book, edit a book or delete a book.</p>
+<p>If you&#39;d like help with those things, I have two suggestions as to where to go.</p>
+<ol>
+<li><a href="https://www.angularonrails.com/">AngularOnRails.com</a>. That&#39;s probably actually where you got this guide. There are a number of free tutorials there that you can use.</li>
+<li>My book, <a href="https://www.angularonrails.com/angular-rails-developers/">Angular for Rails Developers</a>. In addition to covering the same stuff this little guide covers, the book covers deployment and CRUD operations.</li>
+</ol>
+<p>And as always, feel free to email me at jason@angularonrails.com if you have questions. (For technical questions, the best way is to create a Stack Overflow question and send me the link.) I&#39;m happy to try to help.</p>
+<p>Thanks for reading!</p>
+<p>Jason</p>
+
+		</div>
+
+		<script></script>
+	</body>
+</html>
