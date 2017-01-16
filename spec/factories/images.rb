@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  token      :string(32)       not null, indexed
-#  image      :string
+#  file       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -12,6 +12,6 @@
 FactoryGirl.define do
   factory :image do
     token { SecureRandom.hex(10) }
-    image { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/support/images/image.jpg'))) }
+    file { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/support/images/image.jpg'))) }
   end
 end

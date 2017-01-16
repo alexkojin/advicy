@@ -14,6 +14,7 @@ export class AppComponent implements AfterViewInit {
   constructor(public auth: AuthService) {}
 
   ngAfterViewInit() {
+    // Initialize foundation framework
     jQuery(document).foundation();
 
     // Disabling autoDiscover, otherwise Dropzone will try to attach twice.

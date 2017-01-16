@@ -1,9 +1,9 @@
 class Image < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  mount_uploader :file, ImageUploader
 
-  validates :image, presence: true
-  validates_integrity_of :image
-  validates_processing_of :image
+  validates :file, presence: true
+  validates_integrity_of :file
+  validates_processing_of :file
 
   def generate_token
     self.token = SecureRandom.hex(rand(4..8))
@@ -18,7 +18,7 @@ end
 #
 #  id         :integer          not null, primary key
 #  token      :string(32)       not null, indexed
-#  image      :string
+#  file       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

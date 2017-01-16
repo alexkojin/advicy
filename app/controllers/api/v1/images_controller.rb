@@ -3,9 +3,9 @@ module Api::V1
     before_action :require_login
 
     def create
-      image = Image.new(image: params[:file])
+      image = Image.new(file: params[:file])
       if image.save
-        render json: { url: image.image.url }
+        render json: { url: image.file.url }
       else
         render json: image.errors.full_messages, status: :unprocessable_entity
       end
