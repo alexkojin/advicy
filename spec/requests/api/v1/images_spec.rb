@@ -5,7 +5,7 @@ RSpec.describe "Images API", type: :request do
     let(:file) { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'spec/support/images/image.jpg'))) }
     let_auth_headers
 
-    it "uploads an image" do
+    it "uploads an image and returns url for uploaded file" do
       post '/api/v1/images', params: {file: file}, headers: auth_headers
 
       expect(response).to have_http_status(200)

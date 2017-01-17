@@ -47,10 +47,7 @@ export class MdEditorComponent {
         "|", "guide"
       ]
     });
-
-    window.e = this.editor;
   }
-
 
   showUploadImageModal(mde: any) {
     this.uploadModal.open();

@@ -15,6 +15,14 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
   private dropzone: any;
   @Output() onSuccessUpload = new EventEmitter<string>();
 
+  private state: string = 'initial';
+  private errorMessage: string = '';
+
+  private thumbPreviewTemplate = `
+    <div class="dz-preview dz-file-preview">
+      <div class="dz-image"><img data-dz-thumbnail /></div>
+    </div>`;
+
   constructor(private authService: AuthService, private elementRef: ElementRef) { }
 
   ngOnInit() {
@@ -26,6 +34,9 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
       url: environment.API_URL + '/images',
       uploadMultiple: false,
       autoProcessQueue: false,
+      thumbnailWidth: 500,
+      thumbnailHeight: 250,
+      previewTemplate: this.thumbPreviewTemplate,
       maxFiles: 1,
       maxFilesize: 2,
       acceptedFiles: 'image/*',
@@ -37,12 +48,32 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
       success: (file, response) => {
         this.onSuccessUpload.emit(response['url']);
         this.dropzone.removeFile(file);
+        this.state = 'initial';
+        this.close();
       }
+    });
+
+    this.dropzone.on('maxfilesreached', (file) => {
+      this.state = 'fileAdded';
+    });
+
+    this.dropzone.on('error', (file, errorMessage, xhr) => {
+      this.state = 'error';
+      this.errorMessage = errorMessage;
+    });
+
+    this.dropzone.on('reset', () => {
+      this.state = 'initial';
     });
   }
 
   onUpload() {
+    this.state = 'uploading';
     this.dropzone.processQueue();
+  }
+
+  onRemove() {
+    this.dropzone.removeAllFiles();
   }
 
   open() {

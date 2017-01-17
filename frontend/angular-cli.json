@@ -18,7 +18,6 @@
       "mobile": false,
       "styles": [
         "../node_modules/simplemde/dist/simplemde.min.css",
-        "../node_modules/dropzone/dist/dropzone.css",
         "styles/main.scss"
       ],
       "scripts": [

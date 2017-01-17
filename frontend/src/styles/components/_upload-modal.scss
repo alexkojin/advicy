@@ -1,0 +1,87 @@
+.upload-modal {
+  position: relative;
+
+  .upload-modal-actions {
+    text-align: center;
+    .error {
+      span { color: $alert-color; }
+    }
+  }
+
+  .upload-modal-footer {
+    margin-top: 10px;
+  }
+
+  .dropzone, .dropzone * {
+    box-sizing: border-box;
+  }
+  .dropzone {
+    $image-width: 500px;
+    $image-height: 250px;
+    position: relative;
+    min-height: $image-height + 30px;
+    padding: 10px;
+    text-align: center;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+    background: white;
+
+    .dz-message {
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &.dz-clickable {
+      cursor: pointer;
+
+      * {
+        cursor: default;
+      }
+      .dz-message {
+        &, * {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.dz-started {
+      .dz-message {
+        display: none;
+      }
+    }
+
+    &.dz-drag-hover {
+      border-style: solid;
+      .dz-message {
+        opacity: 0.5;
+      }
+    }
+    .dz-message {
+      text-align: center;
+      margin: 2em 0;
+    }
+
+    .dz-preview {
+      position: relative;
+      display: inline-block;
+
+      .dz-image {
+        position: relative;
+        display: block;
+        width: $image-width;
+        height: $image-height;
+        overflow: hidden;
+        z-index: 10;
+
+        img {
+          position: absolute;
+          top: 0px;
+          bottom: 0px;
+          margin: auto;
+          left: 0px;
+          right: 0px;
+        }
+      }
+    }
+  }
+}
