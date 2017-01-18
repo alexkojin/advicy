@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth/auth.service';
 
 declare var jQuery:any;
+declare var Foundation:any;
 
 @Component({
   selector: 'app-upload-modal',
@@ -15,6 +16,7 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
   private dropzone: any;
   @Output() onSuccessUpload = new EventEmitter<string>();
 
+  // initial, fileAdded, uploading, error
   private state: string = 'initial';
   private errorMessage: string = '';
 
@@ -28,8 +30,14 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
   }
-
   ngAfterViewInit() {
+    jQuery(this.elementRef.nativeElement).foundation();
+
+    jQuery(this.elementRef.nativeElement).on('closed.zf.reveal', () => {
+      this.state = 'initial';
+      this.dropzone.removeAllFiles();
+    });
+
     this.dropzone = new Dropzone('.dropzone', {
       url: environment.API_URL + '/images',
       uploadMultiple: false,
@@ -77,11 +85,11 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
   }
 
   open() {
-    jQuery('#upload-modal').foundation().foundation('open');
+    jQuery(this.elementRef.nativeElement).foundation('open');
   }
 
   close() {
-    jQuery('#upload-modal').foundation('destroy');
+    jQuery(this.elementRef.nativeElement).foundation('close');
   }
 
 }

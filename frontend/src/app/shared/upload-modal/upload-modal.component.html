@@ -1,37 +1,35 @@
 
-<div class="small reveal upload-modal" id="upload-modal" data-reveal>
-  <div class="small-12 columns">
-    <div>
-      <div class="dropzone">
-        <div class="dz-default dz-message">
-          <i class="fa fa-5x fa-cloud-upload" aria-hidden="true"></i>
-          <p>Drop files here or click to upload.</p>
-          <span>Max file size is 2MiB</span>
-        </div>
-      </div>
-
-      <div class="upload-modal-actions">
-        <a *ngIf="state == 'fileAdded' " (click)="onRemove()">Cancel and add another image</a>
-
-        <p *ngIf="state == 'error'" class="error">
-          <span>{{this.errorMessage}}</span>
-          &nbsp;|&nbsp;
-          <a (click)="onRemove()">Cancel</a>
-        </p>
-
-        <p *ngIf="state == 'uploading'" class="text-center">
-          Uploading...
-        </p>
-
-      </div>
-
-      <div class="upload-modal-footer clearfix">
-        <button class="button float-right" (click)="onUpload()" [disabled]="state != 'fileAdded'">Add Image</button>
+<div class="small-12 columns">
+  <div>
+    <div class="dropzone">
+      <div class="dz-default dz-message">
+        <i class="fa fa-5x fa-cloud-upload" aria-hidden="true"></i>
+        <p>Drop files here or click to upload.</p>
+        <span>Max file size is 2MiB</span>
       </div>
     </div>
 
+    <div class="upload-modal-actions">
+      <a *ngIf="state == 'fileAdded' " (click)="onRemove()">Cancel and add another image</a>
+
+      <p *ngIf="state == 'error'" class="error">
+        <span>{{this.errorMessage}}</span>
+        &nbsp;|&nbsp;
+        <a (click)="onRemove()">Cancel</a>
+      </p>
+
+      <p *ngIf="state == 'uploading'" class="text-center">
+        Uploading...
+      </p>
+
+    </div>
+
+    <div class="upload-modal-footer clearfix">
+      <button class="button float-right" (click)="onUpload()" [disabled]="state != 'fileAdded'">Add Image</button>
+    </div>
   </div>
-  <button type="button" class="close-button" data-close aria-label="Close modal">
-    <span aria-hidden="true">&times;</span>
-  </button>
+
 </div>
+<button type="button" class="close-button" data-close aria-label="Close modal">
+  <span aria-hidden="true">&times;</span>
+</button>

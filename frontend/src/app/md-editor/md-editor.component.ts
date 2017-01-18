@@ -11,8 +11,11 @@ var SimpleMDE: any = require('simplemde');
   selector: 'app-mdeditor',
   template: `
     <textarea #simplemde>{{defaultValue}}</textarea>
-    <app-upload-modal (onSuccessUpload)="addImage($event)"></app-upload-modal>
-  `
+    <app-upload-modal
+      class="small reveal"
+      data-reveal
+      (onSuccessUpload)="addImage($event)"
+      ></app-upload-modal>`
 })
 
 export class MdEditorComponent {
