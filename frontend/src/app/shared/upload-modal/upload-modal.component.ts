@@ -14,6 +14,7 @@ export class UploadModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private dropzone: any;
   @Output() onSuccessUpload = new EventEmitter<string>();
+  @Output() onClose = new EventEmitter<boolean>();
 
   // initial, fileAdded, uploading, error
   private state: string = 'initial';
@@ -24,7 +25,7 @@ export class UploadModalComponent implements OnInit, AfterViewInit, OnDestroy {
       <div class="dz-image"><img data-dz-thumbnail /></div>
     </div>`;
 
-  constructor(private authService: AuthService, private elementRef: ElementRef) { }
+  constructor(private authService: AuthService, public elementRef: ElementRef) { }
 
   ngOnInit() {
 
@@ -38,9 +39,11 @@ export class UploadModalComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.initDropzone();
+
   }
 
   initDropzone() {
+    // console.log('init dropzone');
     this.dropzone = new Dropzone('.dropzone', {
       url: environment.API_URL + '/images',
       uploadMultiple: false,

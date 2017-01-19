@@ -6,6 +6,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { UploadModalComponent } from '../shared/upload-modal/upload-modal.component';
 
 var SimpleMDE: any = require('simplemde');
+var jQuery: any;
 
 @Component({
   selector: 'app-mdeditor',
@@ -15,9 +16,8 @@ var SimpleMDE: any = require('simplemde');
       class="medium reveal"
       data-reveal
       data-append-to="app-mdeditor"
-      data-reset-on-close="true"
-      (onSuccessUpload)="addImage($event)"
-      ></app-upload-modal>`
+      (onSuccessUpload)="addImage($event)">
+    </app-upload-modal>`
 })
 
 export class MdEditorComponent {
@@ -59,7 +59,6 @@ export class MdEditorComponent {
   }
 
   addImage(url: string) {
-    console.log(url);
     this.editor.codemirror.replaceSelection(`![](${url})`);
   }
 
