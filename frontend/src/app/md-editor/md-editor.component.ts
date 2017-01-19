@@ -12,7 +12,7 @@ var SimpleMDE: any = require('simplemde');
   template: `
     <textarea #simplemde>{{defaultValue}}</textarea>
     <app-upload-modal
-      class="small reveal"
+      class="medium reveal"
       data-reveal
       data-append-to="app-mdeditor"
       data-reset-on-close="true"

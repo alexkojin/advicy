@@ -26,15 +26,15 @@ class QuestionsFilter
     def apply_second_filter(scope)
       case params[:filter]
       when 'unanswered'
-        scope.unanswered.order('questions.created_at desc')
-      when 'hot'
-        scope.popular
+        scope.unanswered.newest
       when 'week'
         scope.popular.last_week
       when 'month'
         scope.popular.last_month
+      when 'all'
+        scope.popular
       else
-        scope.order('questions.created_at desc')
+        scope.newest
       end
     end
 end

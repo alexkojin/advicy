@@ -11,10 +11,8 @@ class Question < ApplicationRecord
   validates :title, :asker, :description, presence: true
 
   scope :unanswered, -> { where('questions.answers_count = 0') }
-  # currently it's simplified and retrieve most viewed questions
-  # more about how to calculate a popular here:
-  #  http://meta.stackexchange.com/questions/11602/what-formula-should-be-used-to-determine-hot-questions
-  scope :popular, -> { order('questions.views_count DESC, questions.created_at DESC') }
+  scope :newest, -> { order('questions.created_at DESC') }
+  scope :popular, -> { order('questions.answers_count DESC, questions.created_at DESC') }
   scope :last_week, -> { where('questions.created_at > ?', 7.days.ago) }
   scope :last_month, -> { where('questions.created_at > ?', 30.days.ago) }
 
