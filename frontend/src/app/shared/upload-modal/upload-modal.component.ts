@@ -1,17 +1,16 @@
-import { Component, OnInit, AfterViewInit, ElementRef, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, EventEmitter, Output} from '@angular/core';
 
 import { environment } from '../../../environments/environment';
 
 import { AuthService } from '../../auth/auth.service';
 
 declare var jQuery:any;
-declare var Foundation:any;
 
 @Component({
   selector: 'app-upload-modal',
   templateUrl: './upload-modal.component.html'
 })
-export class UploadModalComponent implements OnInit, AfterViewInit {
+export class UploadModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private dropzone: any;
   @Output() onSuccessUpload = new EventEmitter<string>();
@@ -38,6 +37,10 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
       this.dropzone.removeAllFiles();
     });
 
+    this.initDropzone();
+  }
+
+  initDropzone() {
     this.dropzone = new Dropzone('.dropzone', {
       url: environment.API_URL + '/images',
       uploadMultiple: false,
@@ -73,6 +76,10 @@ export class UploadModalComponent implements OnInit, AfterViewInit {
     this.dropzone.on('reset', () => {
       this.state = 'initial';
     });
+  }
+
+  ngOnDestroy() {
+    this.dropzone.destroy();
   }
 
   onUpload() {

@@ -14,6 +14,8 @@ var SimpleMDE: any = require('simplemde');
     <app-upload-modal
       class="small reveal"
       data-reveal
+      data-append-to="app-mdeditor"
+      data-reset-on-close="true"
       (onSuccessUpload)="addImage($event)"
       ></app-upload-modal>`
 })
