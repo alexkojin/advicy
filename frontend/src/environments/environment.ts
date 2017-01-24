@@ -8,5 +8,7 @@ export const environment = {
   APP_URL: 'http://localhost:3000',
   API_URL: 'http://localhost:3000/api/v1',
   FACEBOOK_APP_ID: '102175606551344',
-  GOOGLE_CLIENT_ID: '835628838274-794q91pp2dp8404242fo9puck8ovlj2p.apps.googleusercontent.com'
+  GOOGLE_CLIENT_ID: '835628838274-794q91pp2dp8404242fo9puck8ovlj2p.apps.googleusercontent.com',
+  GOOGLE_ANALYTICS_ID: 'UA-90806335-1',
+  GOOGLE_ANALYTICS_ENABLED: false
 };

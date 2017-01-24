@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
+
 import { AppComponent } from './app.component';
 
 import { routing } from './app.routing';
@@ -109,7 +111,8 @@ export const authProvider = {
     routing,
     FormsModule,
     HttpModule,
-    Ng2PaginationModule
+    Ng2PaginationModule,
+    Angulartics2Module.forRoot([ Angulartics2GoogleAnalytics ])
   ],
   providers: [
     AuthGuard,
