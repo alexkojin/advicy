@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /password/*
+
+Sitemap: https://s3.amazonaws.com/advicy/sitemaps/sitemap.xml.gz
