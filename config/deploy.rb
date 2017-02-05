@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
+require 'mina/whenever'
 require 'mina/systemd'
 
 set :domain, 'advicy'
@@ -44,6 +45,7 @@ task deploy: :environment do
 
     on :launch do
       invoke :'systemctl:restart', 'advicy-puma'
+      invoke :'whenever:update'
     end
   end
 end

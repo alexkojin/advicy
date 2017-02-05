@@ -26,6 +26,12 @@ gem 'omniauth-google-oauth2'
 # error notification
 gem 'airbrake', '~> 5.0'
 
+# manage cron tasks
+gem 'whenever', require: false
+
+# generate a sitemap
+gem 'sitemap_generator'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

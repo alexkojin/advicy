@@ -57,6 +57,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chronic (0.10.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     devise (4.2.0)
@@ -360,6 +361,8 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     shellany (0.0.1)
+    sitemap_generator (5.2.0)
+      builder (~> 3.0)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -386,6 +389,8 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -420,11 +425,13 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rb-fsevent
   rspec-rails (~> 3.5)
+  sitemap_generator
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   terminal-notifier-guard
   tzinfo-data
+  whenever
 
 BUNDLED WITH
    1.13.6
