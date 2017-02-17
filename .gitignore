@@ -20,6 +20,9 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+.ruby-version
+.ruby-gemset
+
 /config/application.yml
 /config/database.yml
 /config/puma.rb
